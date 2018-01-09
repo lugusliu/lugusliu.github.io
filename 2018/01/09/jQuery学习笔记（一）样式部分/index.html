@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="jQuery," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="jQuery样式基础1. 基本概念jQuery 每一个系列版本分为：压缩版(compressed)  与  开发版(development)，我们在开发过程中使用开发版（开发版本便于代码修改及调试），项目上线发布使用压缩版（因为压缩版本体积更小，效率更快）。">
+<meta name="keywords" content="jQuery">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery学习笔记（一）样式部分">
+<meta property="og:url" content="http://lugusliu.com/2018/01/09/jQuery学习笔记（一）样式部分/index.html">
+<meta property="og:site_name" content="Lugus&#39;s Personal Website">
+<meta property="og:description" content="jQuery样式基础1. 基本概念jQuery 每一个系列版本分为：压缩版(compressed)  与  开发版(development)，我们在开发过程中使用开发版（开发版本便于代码修改及调试），项目上线发布使用压缩版（因为压缩版本体积更小，效率更快）。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-09T15:18:27.147Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="jQuery学习笔记（一）样式部分">
+<meta name="twitter:description" content="jQuery样式基础1. 基本概念jQuery 每一个系列版本分为：压缩版(compressed)  与  开发版(development)，我们在开发过程中使用开发版（开发版本便于代码修改及调试），项目上线发布使用压缩版（因为压缩版本体积更小，效率更快）。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://lugusliu.com/2018/01/09/jQuery学习笔记（一）样式部分/"/>
+
+
+
+
+
+  <title>jQuery学习笔记（一）样式部分 | Lugus's Personal Website</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lugus's Personal Website</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lugusliu.com/2018/01/09/jQuery学习笔记（一）样式部分/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lugus liu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/lugus.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lugus's Personal Website">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">jQuery学习笔记（一）样式部分</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-09T23:08:10+08:00">
+                2018-01-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="jQuery样式基础"><a href="#jQuery样式基础" class="headerlink" title="jQuery样式基础"></a>jQuery样式基础</h1><h2 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1. 基本概念"></a>1. 基本概念</h2><p>jQuery 每一个系列版本分为：<strong>压缩版(compressed)</strong>  与  <strong>开发版(development)</strong>，我们在开发过程中使用开发版（开发版本便于代码修改及调试），项目上线发布使用压缩版（因为压缩版本体积更小，效率更快）。</p>
+<a id="more"></a>
+<blockquote>
+<p>jQuery对象与DOM对象是不一样的</p>
+</blockquote>
+<ol>
+<li>通过jQuery方法包装后的对象，是一个类数组对像，与DOM对象完全不同，但它们都能操作DOM。</li>
+<li>通过jQuery处理DOM的操作，可以让开发者更专注业务逻辑的开发，不需要具体知道哪个DOM节点有那些方法，也不需要关心不同浏览器的兼容性问题，用jQuery提供的API进行开发，代码也会更加精短。</li>
+</ol>
+<blockquote>
+<p>jQuery是一个类数组对象（可通过get方法，将jquery对象转化为dom对象），而DOM对象就是一个单独的DOM元素。<br>如果传递给$(DOM)函数的参数是一个DOM对象，jQuery方法会把这个DOM对象给包装成一个新的jQuery对象</p>
+</blockquote>
+<p><strong>基本设计思想</strong>：</p>
+<blockquote>
+<p>jQuery的基本设计思想和主要用法，就是”选择某个网页元素，然后对其进行某种操作”。这是它区别于其他Javascript库的根本特点。<br>jQuery设计思想之二，就是提供各种强大的过滤器，对结果集进行筛选，缩小选择结果。<br>jQuery设计思想之三，就是最终选中网页元素以后，可以对它进行一系列操作，并且所有操作可以连接在一起，以链条的形式写出来。<br>jQuery设计思想之四，就是使用同一个函数，来完成取值（getter）和赋值（setter），即”取值器”与”赋值器”合一。到底是取值还是赋值，由函数的参数决定。<br>Query设计思想之五，就是提供两组方法，来操作元素在网页中的位置移动。一组方法是直接移动该元素，另一组方法是移动其他元素，使得目标元素达到我们想要的位置。<br>jQuery设计思想之六：除了对选中的元素进行操作以外，还提供一些与元素无关的工具方法（utility）。不必选中元素，就可以直接使用这些方法。<br>jQuery设计思想之七，就是把事件直接绑定在网页元素之上。</p>
+</blockquote>
+<h2 id="2-选择器"><a href="#2-选择器" class="headerlink" title="2. 选择器"></a>2. 选择器</h2><h3 id="id选择器"><a href="#id选择器" class="headerlink" title="id选择器"></a><strong>id选择器</strong></h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$("#id)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>id是唯一的，每个id值在一个页面中只能使用一次。如果多个元素分配了相同的id，将只匹配该id选择集合的第一个DOM元素。但这种行为不应该发生;有超过一个元素的页面使用相同的id是无效的</p>
+</blockquote>
+<h3 id="class选择器"><a href="#class选择器" class="headerlink" title="class选择器"></a><strong>class选择器</strong></h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(".class")</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>class选择器，相对id选择器来说，效率相对会低一点，但是优势就是可以多选，另外，<strong>jQuery除了选择上的简单，而且没有再次使用循环处理</strong></p>
+</blockquote>
+<h3 id="element选择器"><a href="#element选择器" class="headerlink" title="element选择器"></a><strong>element选择器</strong></h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$("element")</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>搜索指定元素标签名的所有节点，这个是一个合集的操作。同样的也有原生方法getElementsByTagName()函数支持</p>
+</blockquote>
+<h3 id="选择器"><a href="#选择器" class="headerlink" title="*选择器"></a><strong>*选择器</strong></h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$("*")</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>抛开jQuery，如果要获取文档中所有的元素，通过document.getElementsByTagName(“*”)同样可以获取到</p>
+</blockquote>
+<ul>
+<li><strong>选择器的兼容性问题</strong></li>
+</ul>
+<ol>
+<li>IE会将注释节点实现为元素，所以在IE中调用getElementsByTagName里面会包含注释节点，这个通常是不应该的</li>
+<li>getElementById的参数在IE8及较低的版本不区分大小写</li>
+<li>IE7及较低的版本中，表单元素中，如果表单A的name属性名用了另一个元素B的ID名并且A在B之前，那么getElementById会选中A</li>
+<li>IE8及较低的版本，浏览器不支持getElementsByClassName</li>
+</ol>
+<h3 id="层级选择器"><a href="#层级选择器" class="headerlink" title="层级选择器"></a><strong>层级选择器</strong></h3><table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$(“parent &gt; child”)</td>
+<td><strong>子选择器</strong>：选择所有指定“parent”元素中指定的“child”的直接子元素。</td>
+</tr>
+<tr>
+<td>$(“ancestor descendant”)</td>
+<td><strong>后代选择器</strong>：选择给定的祖先元素的所有后代元素，一个元素的后代可能是该元素的一个孩子，孙子，曾孙等</td>
+</tr>
+<tr>
+<td>$(“prev + next”)</td>
+<td><strong>相邻兄弟原则器</strong>：选择所有紧接在“prev”元素后的“next”元素</td>
+</tr>
+<tr>
+<td>$(“prev ~ siblings”)</td>
+<td><strong>一般兄弟选择器</strong>：匹配“prev”元素之后的所有兄弟元素。具有相同的父元素，并匹配过滤“siblings”选择器</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<ol>
+<li>层级选择器都有一个参考节点</li>
+<li>后代选择器包含子选择器的选择的内容</li>
+<li>一般兄弟选择器包含相邻兄弟选择的内容</li>
+<li>相邻兄弟选择器和一般兄弟选择器所选择到的元素，必须在同一个父元素下且不能向前选择</li>
+</ol>
+</blockquote>
+<h3 id="基本筛选选择器"><a href="#基本筛选选择器" class="headerlink" title="基本筛选选择器"></a><strong>基本筛选选择器</strong></h3><table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$(“:first”)</td>
+<td>匹配第一个元素</td>
+</tr>
+<tr>
+<td>$(“:last”)</td>
+<td>匹配最后一个元素</td>
+</tr>
+<tr>
+<td>$(“:not(selector)”)</td>
+<td>一个用来过滤的选择器，选择所有元素去除不匹配给定的选择器元素</td>
+</tr>
+<tr>
+<td>$(“:eq(index)”)</td>
+<td>在匹配的集合中选择索引值为index的元素</td>
+</tr>
+<tr>
+<td>$(“:gt(index)”)</td>
+<td>选择匹配集合中所有大于给定index的元素</td>
+</tr>
+<tr>
+<td>$(“:lt(index)”)</td>
+<td>选择匹配集合中所有小于给定index的元素</td>
+</tr>
+<tr>
+<td>$(“:even”)</td>
+<td>选择索引值为偶数的元素，从0开始计数</td>
+</tr>
+<tr>
+<td>$(“:odd”)</td>
+<td>选择索引值为奇数的元素，从0开始计数</td>
+</tr>
+<tr>
+<td>$(“:header”)</td>
+<td>选择所有标题元素，像h1，h2，h3等</td>
+</tr>
+<tr>
+<td>$(“:lang(language)”)</td>
+<td>选择指定语言的所有元素</td>
+</tr>
+<tr>
+<td>$(“:root”)</td>
+<td>选择该文档的根元素</td>
+</tr>
+</tbody>
+</table>
+<p>$(“:animated”) 选择所有正在执行动画效果的元素</p>
+<blockquote>
+<ol>
+<li>:eq(), :lt(), :gt(), :even, :odd 用来筛选他们前面的匹配表达式的集合元素，根据之前匹配的元素在进一步筛选，注意 <strong>jQuery合集都是从0开始索引</strong></li>
+<li>gt是一个段落筛选，从指定索引的下一个开始，gt(1) 实际从2开始</li>
+</ol>
+</blockquote>
+<h3 id="内容筛选选择器"><a href="#内容筛选选择器" class="headerlink" title="内容筛选选择器"></a><strong>内容筛选选择器</strong></h3><table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$(“:contains(text)”)</td>
+<td>选择所有包含指定文本的元素</td>
+</tr>
+<tr>
+<td>$(“:has(selector)”)</td>
+<td>选择元素中至少包含制定选择器的元素</td>
+</tr>
+<tr>
+<td>$(“:parent”)</td>
+<td>选择所有含有子元素或文本的元素</td>
+</tr>
+<tr>
+<td>$(“:empty”)</td>
+<td>选择所有没有子元素或者文本的元素</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<ol>
+<li>:contains与:has都有查找的意思，但是contains查找包含“指定文本”的元素，has查找包含“指定元素”的元素</li>
+<li>如果:contains匹配的文本包含在元素的子元素中，同样认为是符合条件的。</li>
+<li>:parent与:empty是相反的，两者所涉及的子元素，包括文本节点</li>
+</ol>
+</blockquote>
+<h3 id="可见性筛选选择器"><a href="#可见性筛选选择器" class="headerlink" title="可见性筛选选择器"></a><strong>可见性筛选选择器</strong></h3><table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$(“:visible”)</td>
+<td>选择所有显示的元素</td>
+</tr>
+<tr>
+<td>$(“:hidden”)</td>
+<td>选择所有隐藏的元素</td>
+</tr>
+</tbody>
+</table>
+<p>隐藏一个元素的方法有下面几种方式：</p>
+<ol>
+<li>CSS display的值是none</li>
+<li>type=”hidden”的表单元素</li>
+<li>宽度和高度都显式设置为0</li>
+<li>一个祖先元素是隐藏的，该元素是不会在页面上显示</li>
+<li>CSS visibility的值是hidden</li>
+<li>CSS opacity的值是0</li>
+</ol>
+<blockquote>
+<p>如果元素中占据文档中一定的空间,元素被认为是可见的。<br>可见元素的宽度或高度，是大于零。<br>元素的visibility: hidden 或 opacity: 0被认为是可见的，因为他们仍然占用空间布局。</p>
+</blockquote>
+<h3 id="属性筛选选择器"><a href="#属性筛选选择器" class="headerlink" title="属性筛选选择器"></a><strong>属性筛选选择器</strong></h3><table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$(“[attribute]”)</td>
+<td>选择所有具有指定属性的元素，该属性可以是任何值</td>
+</tr>
+<tr>
+<td>$(“[attribute=’value’]”)</td>
+<td>选择指定属性是给定值的元素</td>
+</tr>
+<tr>
+<td>$(“[attribute\</td>
+<td>=’value’]”)</td>
+<td>选择指定属性值等于给定字符串或以该文字串为前缀（该字符串后跟一个连字符“-”）的元素</td>
+</tr>
+<tr>
+<td>$(“[attribute^=’value’]”)</td>
+<td>选择指定属性是以给定字符串开始的元素</td>
+</tr>
+<tr>
+<td>$(“[attribute\$=’value’]”)</td>
+<td>选择指定属性是以给定字符串结尾的元素（区分大小写）</td>
+</tr>
+<tr>
+<td>$(“[attribute*=’value’]”)</td>
+<td>选择指定属性具有包含一个给定的子字符串的元素（选择给定的属性是以包含某些值的元素）</td>
+</tr>
+<tr>
+<td>$(“[attribute~=’value’]”)</td>
+<td>选择指定属性用空格分隔的值中包含一个给定值的元素</td>
+</tr>
+<tr>
+<td>$(“[attribute!=’value’]”)</td>
+<td>选择不存在指定属性，或者指定的属性值不等于给定值的元素</td>
+</tr>
+<tr>
+<td>$(“[attributeFilter1][attributeFilterN]”)</td>
+<td>选择匹配所有指定的属性筛选器的元素</td>
+</tr>
+</tbody>
+</table>
+<h3 id="子元素筛选选择器"><a href="#子元素筛选选择器" class="headerlink" title="子元素筛选选择器"></a><strong>子元素筛选选择器</strong></h3><table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$(“:first-child”)</td>
+<td>选择所有父级元素下的第一个子元素</td>
+</tr>
+<tr>
+<td>$(“:last-child”)</td>
+<td>选择所有父级元素下的最后一个子元素</td>
+</tr>
+<tr>
+<td>$(“:only-child”)</td>
+<td>如果某个元素是其父元素的唯一子元素，那么它就会被选中</td>
+</tr>
+<tr>
+<td>$(“:nth-child”)</td>
+<td>选择他们所有父元素的第n个子元素</td>
+</tr>
+<tr>
+<td>$(“:nth-last-child”)</td>
+<td>选择所有他们父元素的第n个子元素，计数从最后一个元素开始到第一个</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<ol>
+<li>:first只匹配一个单独的元素，但是:first-child选择器可以匹配多个：即为每个父级元素匹配第一个子元素。这相当于:nth-child(1)</li>
+<li>:last 只匹配一个单独的元素， :last-child 选择器可以匹配多个元素：即，为每个父级元素匹配最后一个子元素</li>
+<li>如果子元素只有一个的话，:first-child与:last-child是同一个</li>
+<li>:only-child匹配某个元素是父元素中唯一的子元素，就是说当前子元素是父元素中唯一的元素，则匹配</li>
+<li>jQuery实现:nth-child(n)是严格来自CSS规范，所以n值是“索引”，也就是说，从1开始计数，:nth-child(index)从1开始的，而eq(index)是从0开始的</li>
+<li>nth-child(n) 与 :nth-last-child(n) 的区别前者是从前往后计算，后者从后往前计算</li>
+</ol>
+</blockquote>
+<h3 id="表单元素选择器"><a href="#表单元素选择器" class="headerlink" title="表单元素选择器"></a><strong>表单元素选择器</strong></h3><table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$(“:input”)</td>
+<td>选择所有input，textarea，select和button元素</td>
+</tr>
+<tr>
+<td>$(“:text”)</td>
+<td>匹配所有文本框</td>
+</tr>
+<tr>
+<td>$(“:password”)</td>
+<td>匹配所有密码框</td>
+</tr>
+<tr>
+<td>$(“:radio”)</td>
+<td>匹配所有单选按钮</td>
+</tr>
+<tr>
+<td>$(“:checkbox”)</td>
+<td>匹配所有复选框</td>
+</tr>
+<tr>
+<td>$(“:submit”)</td>
+<td>匹配所有提交按钮</td>
+</tr>
+<tr>
+<td>$(“:image”)</td>
+<td>匹配所有图像域</td>
+</tr>
+<tr>
+<td>$(“:reset”)</td>
+<td>匹配所有重置按钮</td>
+</tr>
+<tr>
+<td>$(“:button”)</td>
+<td>匹配所有按钮</td>
+</tr>
+<tr>
+<td>$(“:file”)</td>
+<td>匹配所有文件域</td>
+</tr>
+</tbody>
+</table>
+<h3 id="表单对象属性筛选选择器"><a href="#表单对象属性筛选选择器" class="headerlink" title="表单对象属性筛选选择器"></a><strong>表单对象属性筛选选择器</strong></h3><table>
+<thead>
+<tr>
+<th>选择器</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$(“:enabled”)</td>
+<td>选择可用的表单元素</td>
+</tr>
+<tr>
+<td>$(“:disabled”)</td>
+<td>选择不可用的表单元素</td>
+</tr>
+<tr>
+<td>$(“:checked”)</td>
+<td>选取被选中的\<input>元素</td>
+</tr>
+<tr>
+<td>$(“:selected”)</td>
+<td>选取被选中的\<option>元素</option></td>
+</tr>
+</tbody>
+</table>
+<h3 id="选择器之特殊选择器this"><a href="#选择器之特殊选择器this" class="headerlink" title="选择器之特殊选择器this"></a><strong>选择器之特殊选择器this</strong></h3><blockquote>
+<p><strong>this</strong>，表示当前的上下文对象是一个html对象，可以调用html对象所拥有的属性和方法。<br><strong>$(this)</strong>，代表的上下文对象是一个jquery的上下文对象，可以调用jQuery的方法和属性值。</p>
+</blockquote>
+<h2 id="3-属性与样式"><a href="#3-属性与样式" class="headerlink" title="3. 属性与样式"></a>3. 属性与样式</h2><h3 id="attr"><a href="#attr" class="headerlink" title=".attr()"></a>.attr()</h3><ol>
+<li>attr(传入属性名)：获取属性的值</li>
+<li>attr(属性名, 属性值)：设置属性的值</li>
+<li>attr(属性名,函数值)：设置属性的函数值</li>
+<li>attr(attributes)：给指定元素设置多个属性值，即：{属性名一: “属性值一” , 属性名二: “属性值二” , … … }</li>
+</ol>
+<h3 id="removeAttr"><a href="#removeAttr" class="headerlink" title=".removeAttr()"></a>.removeAttr()</h3><p>.removeAttr( attributeName ) : 为匹配的元素集合中的每个元素中移除一个属性（attribute）</p>
+<h3 id="html"><a href="#html" class="headerlink" title=".html()"></a>.html()</h3><p>获取集合中第一个匹配元素的HTML内容或设置每一个匹配元素的html内容</p>
+<ol>
+<li>.html() 不传入值，就是获取集合中第一个匹配元素的HTML内容</li>
+<li>.html( htmlString )  设置每一个匹配元素的html内容</li>
+<li>.html( function(index, oldhtml) ) 用来返回设置HTML内容的一个函数</li>
+</ol>
+<blockquote>
+<p>.html()方法内部使用的是DOM的innerHTML属性来处理的，所以在设置与获取上需要注意的一个最重要的问题，这个操作是针对整个HTML内容（不仅仅只是文本内容）</p>
+</blockquote>
+<h3 id="text"><a href="#text" class="headerlink" title=".text()"></a>.text()</h3><p>得到匹配元素集合中每个元素的文本内容结合，包括他们的后代，或设置匹配元素集合中每个元素的文本内容为指定的文本内容。</p>
+<ol>
+<li>.text() 得到匹配元素集合中每个元素的合并文本，包括他们的后代</li>
+<li>.text( textString ) 用于设置匹配元素内容的文本</li>
+<li>.text( function(index, text) ) 用来返回设置文本内容的一个函数</li>
+</ol>
+<blockquote>
+<p>.text()结果返回一个字符串，包含所有匹配元素的合并文本</p>
+</blockquote>
+<ul>
+<li><strong>.html()与.text()的异同</strong></li>
+</ul>
+<ol>
+<li>.html与.text的方法操作是一样，只是在具体针对处理对象不同</li>
+<li>.html处理的是元素内容，.text处理的是文本内容</li>
+<li>.html只能使用在HTML文档中，.text 在XML 和 HTML 文档中都能使用</li>
+<li>如果处理的对象只有一个子文本节点，那么html处理的结果与text是一样的</li>
+<li>火狐不支持innerText属性，用了类似的textContent属性，.text()方法综合了2个属性的支持，所以可以兼容所有浏览器</li>
+</ol>
+<h3 id="val"><a href="#val" class="headerlink" title=".val()"></a>.val()</h3><p>主要是用于处理表单元素的值</p>
+<ol>
+<li>.val()无参数，获取匹配的元素集合中第一个元素的当前值</li>
+<li>.val( value )，设置匹配的元素集合中每个元素的值</li>
+<li>.val( function ) ，一个用来返回设置值的函数</li>
+</ol>
+<blockquote>
+<p>通过.val()处理select元素， 当没有选择项被选中，它返回null<br>.val()方法多用来设置表单的字段的值<br>如果select元素有multiple（多选）属性，并且至少一个选择项被选中， .val()方法返回一个数组，这个数组包含每个选中选择项的值</p>
+</blockquote>
+<h3 id="addClass"><a href="#addClass" class="headerlink" title=".addClass()"></a>.addClass()</h3><p>用于动态增加class类名</p>
+<ol>
+<li>.addClass( className ) : 为每个匹配元素所要增加的一个或多个样式名</li>
+<li>.addClass( function(index, currentClass) ) : 这个函数返回一个或更多用空格隔开的要增加的样式名</li>
+</ol>
+<h3 id="removeClass"><a href="#removeClass" class="headerlink" title=".removeClass()"></a>.removeClass()</h3><p>从匹配的元素中删除全部或者指定的class</p>
+<ol>
+<li>.removeClass( [className ] )：每个匹配元素移除的一个或多个用空格隔开的样式名</li>
+<li>.removeClass( function(index, class) ) ： 一个函数，返回一个或多个将要被移除的样式名</li>
+</ol>
+<h3 id="toggleClass"><a href="#toggleClass" class="headerlink" title=".toggleClass()"></a>.toggleClass()</h3><p>如果存在（不存在）就删除（添加）一个class</p>
+<ol>
+<li>.toggleClass( className )：在匹配的元素集合中的每个元素上用来切换的一个或多个（用空格隔开）样式类名</li>
+<li>.toggleClass( className, switch )：一个布尔值，用于判断样式是否应该被添加或移除</li>
+<li>.toggleClass( [switch ] )：一个用来判断样式类添加还是移除的 布尔值</li>
+<li>.toggleClass( function(index, class, switch) [, switch ] )：用来返回在匹配的元素集合中的每个元素上用来切换的样式类名的一个函数。接收元素的索引位置和元素旧的样式类作为参数</li>
+</ol>
+<h3 id="css"><a href="#css" class="headerlink" title=".css()"></a>.css()</h3><p>获取元素样式属性的计算值或者设置元素的CSS属性</p>
+<ol>
+<li>.css( propertyName ) ：获取匹配元素集合中的第一个元素的样式属性的计算值</li>
+<li>.css( propertyNames )：传递一组数组，返回一个对象结果</li>
+</ol>
+<ul>
+<li><strong>.addClass()与.css()的异同</strong></li>
+</ul>
+<ol>
+<li>.addClass()本质只是针对class的类的增加删除，不能获取到指定样式的属性的值，.css()可以获取到指定的样式值。</li>
+<li>通过.css()方法处理的是内联样式，直接通过元素的style属性附加到元素上的，所以优先级要高于.addClass()</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/jQuery/" rel="tag"># jQuery</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/08/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/09/jQuery学习笔记（二）DOM部分/" rel="prev" title="jQuery学习笔记（二）DOM部分">
+                jQuery学习笔记（二）DOM部分 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/lugus.jpg"
+                alt="lugus liu" />
+            
+              <p class="site-author-name" itemprop="name">lugus liu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/lugusliu" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#jQuery样式基础"><span class="nav-number">1.</span> <span class="nav-text">jQuery样式基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-基本概念"><span class="nav-number">1.1.</span> <span class="nav-text">1. 基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-选择器"><span class="nav-number">1.2.</span> <span class="nav-text">2. 选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#id选择器"><span class="nav-number">1.2.1.</span> <span class="nav-text">id选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#class选择器"><span class="nav-number">1.2.2.</span> <span class="nav-text">class选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#element选择器"><span class="nav-number">1.2.3.</span> <span class="nav-text">element选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择器"><span class="nav-number">1.2.4.</span> <span class="nav-text">*选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#层级选择器"><span class="nav-number">1.2.5.</span> <span class="nav-text">层级选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本筛选选择器"><span class="nav-number">1.2.6.</span> <span class="nav-text">基本筛选选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内容筛选选择器"><span class="nav-number">1.2.7.</span> <span class="nav-text">内容筛选选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可见性筛选选择器"><span class="nav-number">1.2.8.</span> <span class="nav-text">可见性筛选选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#属性筛选选择器"><span class="nav-number">1.2.9.</span> <span class="nav-text">属性筛选选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子元素筛选选择器"><span class="nav-number">1.2.10.</span> <span class="nav-text">子元素筛选选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表单元素选择器"><span class="nav-number">1.2.11.</span> <span class="nav-text">表单元素选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表单对象属性筛选选择器"><span class="nav-number">1.2.12.</span> <span class="nav-text">表单对象属性筛选选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择器之特殊选择器this"><span class="nav-number">1.2.13.</span> <span class="nav-text">选择器之特殊选择器this</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-属性与样式"><span class="nav-number">1.3.</span> <span class="nav-text">3. 属性与样式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#attr"><span class="nav-number">1.3.1.</span> <span class="nav-text">.attr()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#removeAttr"><span class="nav-number">1.3.2.</span> <span class="nav-text">.removeAttr()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#html"><span class="nav-number">1.3.3.</span> <span class="nav-text">.html()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#text"><span class="nav-number">1.3.4.</span> <span class="nav-text">.text()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#val"><span class="nav-number">1.3.5.</span> <span class="nav-text">.val()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#addClass"><span class="nav-number">1.3.6.</span> <span class="nav-text">.addClass()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#removeClass"><span class="nav-number">1.3.7.</span> <span class="nav-text">.removeClass()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#toggleClass"><span class="nav-number">1.3.8.</span> <span class="nav-text">.toggleClass()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#css"><span class="nav-number">1.3.9.</span> <span class="nav-text">.css()</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lugus liu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
