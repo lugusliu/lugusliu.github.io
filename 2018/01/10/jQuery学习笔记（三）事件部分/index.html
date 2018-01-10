@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="blog, html, css, javascript, jquery" />
+  <meta name="keywords" content="jQuery," />
 
 
 
@@ -79,13 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lugus&#39;s Personal Website">
-<meta property="og:url" content="http://lugusliu.com/index.html">
+<meta name="description" content="jQuery 事件部分1. 鼠标事件.click()/.dbclick() $ele.click() 绑定\$ele元素，不带任何参数一般是用来指定触发一个事件 1234567&amp;lt;div id=&quot;test&quot;&amp;gt;点击触发&amp;lt;div&amp;gt;$(&quot;ele&quot;).click(function()&amp;#123;    alert(&apos;触发指定事件&apos;)&amp;#125;)$(&quot;#test&quot;).click(fu">
+<meta name="keywords" content="jQuery">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery学习笔记（三）事件部分">
+<meta property="og:url" content="http://lugusliu.com/2018/01/10/jQuery学习笔记（三）事件部分/index.html">
 <meta property="og:site_name" content="Lugus&#39;s Personal Website">
+<meta property="og:description" content="jQuery 事件部分1. 鼠标事件.click()/.dbclick() $ele.click() 绑定\$ele元素，不带任何参数一般是用来指定触发一个事件 1234567&amp;lt;div id=&quot;test&quot;&amp;gt;点击触发&amp;lt;div&amp;gt;$(&quot;ele&quot;).click(function()&amp;#123;    alert(&apos;触发指定事件&apos;)&amp;#125;)$(&quot;#test&quot;).click(fu">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-01-10T15:50:55.400Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lugus&#39;s Personal Website">
+<meta name="twitter:title" content="jQuery学习笔记（三）事件部分">
+<meta name="twitter:description" content="jQuery 事件部分1. 鼠标事件.click()/.dbclick() $ele.click() 绑定\$ele元素，不带任何参数一般是用来指定触发一个事件 1234567&amp;lt;div id=&quot;test&quot;&amp;gt;点击触发&amp;lt;div&amp;gt;$(&quot;ele&quot;).click(function()&amp;#123;    alert(&apos;触发指定事件&apos;)&amp;#125;)$(&quot;#test&quot;).click(fu">
 
 
 
@@ -115,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://lugusliu.com/"/>
+  <link rel="canonical" href="http://lugusliu.com/2018/01/10/jQuery学习笔记（三）事件部分/"/>
 
 
 
 
 
-  <title>Lugus's Personal Website</title>
+  <title>jQuery学习笔记（三）事件部分 | Lugus's Personal Website</title>
   
 
 
@@ -140,8 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -234,9 +238,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -266,9 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/10/jQuery学习笔记（三）事件部分/" itemprop="url">jQuery学习笔记（三）事件部分</a></h1>
+          <h1 class="post-title" itemprop="name headline">jQuery学习笔记（三）事件部分</h1>
         
 
         <div class="post-meta">
@@ -340,9 +342,7 @@
       
 
       
-        
-          
-            <h1 id="jQuery-事件部分"><a href="#jQuery-事件部分" class="headerlink" title="jQuery 事件部分"></a>jQuery 事件部分</h1><h2 id="1-鼠标事件"><a href="#1-鼠标事件" class="headerlink" title="1. 鼠标事件"></a>1. 鼠标事件</h2><h3 id="click-dbclick"><a href="#click-dbclick" class="headerlink" title=".click()/.dbclick()"></a><strong>.click()/.dbclick()</strong></h3><ul>
+        <h1 id="jQuery-事件部分"><a href="#jQuery-事件部分" class="headerlink" title="jQuery 事件部分"></a>jQuery 事件部分</h1><h2 id="1-鼠标事件"><a href="#1-鼠标事件" class="headerlink" title="1. 鼠标事件"></a>1. 鼠标事件</h2><h3 id="click-dbclick"><a href="#click-dbclick" class="headerlink" title=".click()/.dbclick()"></a><strong>.click()/.dbclick()</strong></h3><ul>
 <li><p>$ele.click()</p>
 <p>绑定\$ele元素，不带任何参数一般是用来指定触发一个事件</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">"test"</span>&gt;点击触发&lt;div&gt;</span><br><span class="line">$(<span class="string">"ele"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="string">'触发指定事件'</span>)</span><br><span class="line">&#125;)</span><br><span class="line">$(<span class="string">"#test"</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="string">"ele"</span>).click()</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
@@ -539,8 +539,6 @@
 </li>
 </ul>
 
-          
-        
       
     </div>
     
@@ -555,306 +553,36 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://lugusliu.com/2018/01/09/jQuery学习笔记（二）DOM部分/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lugus liu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/lugus.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lugus's Personal Website">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/09/jQuery学习笔记（二）DOM部分/" itemprop="url">jQuery学习笔记（二）DOM部分</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-09T23:09:45+08:00">
-                2018-01-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">学习笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/jQuery/" rel="tag"># jQuery</a>
           
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          <h1 id="jQuery-DOM部分"><a href="#jQuery-DOM部分" class="headerlink" title="jQuery DOM部分"></a>jQuery DOM部分</h1><h2 id="1-DOM节点的创建"><a href="#1-DOM节点的创建" class="headerlink" title="1. DOM节点的创建"></a>1. DOM节点的创建</h2><p>直接把这个节点的结构给通过HTML标记字符串描述出来，通过$()函数处理，$(“html结构”)，包括创建元素节点，文本节点以及属性节点，如下：</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/09/jQuery学习笔记（二）DOM部分/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/09/jQuery学习笔记（二）DOM部分/" rel="next" title="jQuery学习笔记（二）DOM部分">
+                <i class="fa fa-chevron-left"></i> jQuery学习笔记（二）DOM部分
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://lugusliu.com/2018/01/09/jQuery学习笔记（一）样式部分/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lugus liu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/lugus.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lugus's Personal Website">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/09/jQuery学习笔记（一）样式部分/" itemprop="url">jQuery学习笔记（一）样式部分</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-09T23:08:10+08:00">
-                2018-01-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">学习笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h1 id="jQuery样式基础"><a href="#jQuery样式基础" class="headerlink" title="jQuery样式基础"></a>jQuery样式基础</h1><h2 id="1-基本概念"><a href="#1-基本概念" class="headerlink" title="1. 基本概念"></a>1. 基本概念</h2><p>jQuery 每一个系列版本分为：<strong>压缩版(compressed)</strong>  与  <strong>开发版(development)</strong>，我们在开发过程中使用开发版（开发版本便于代码修改及调试），项目上线发布使用压缩版（因为压缩版本体积更小，效率更快）。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/09/jQuery学习笔记（一）样式部分/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -864,134 +592,11 @@
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://lugusliu.com/2018/01/08/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lugus liu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/lugus.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Lugus's Personal Website">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/01/08/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-08T21:45:17+08:00">
-                2018-01-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.<br></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/01/08/hello-world/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -999,6 +604,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -1019,8 +628,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1094,6 +712,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#jQuery-事件部分"><span class="nav-number">1.</span> <span class="nav-text">jQuery 事件部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-鼠标事件"><span class="nav-number">1.1.</span> <span class="nav-text">1. 鼠标事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#click-dbclick"><span class="nav-number">1.1.1.</span> <span class="nav-text">.click()/.dbclick()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mousedown-mouseup"><span class="nav-number">1.1.2.</span> <span class="nav-text">.mousedown()/mouseup()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mousemove"><span class="nav-number">1.1.3.</span> <span class="nav-text">.mousemove()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mouseover-mouseout"><span class="nav-number">1.1.4.</span> <span class="nav-text">.mouseover()/.mouseout()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mouseenter-mouseleave"><span class="nav-number">1.1.5.</span> <span class="nav-text">.mouseenter()/.mouseleave()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hover"><span class="nav-number">1.1.6.</span> <span class="nav-text">.hover()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#focusin-focusout"><span class="nav-number">1.1.7.</span> <span class="nav-text">.focusin()/.focusout()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-表单事件"><span class="nav-number">1.2.</span> <span class="nav-text">2. 表单事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#focus-blur"><span class="nav-number">1.2.1.</span> <span class="nav-text">.focus()/.blur()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#change"><span class="nav-number">1.2.2.</span> <span class="nav-text">.change()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#select"><span class="nav-number">1.2.3.</span> <span class="nav-text">.select()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#submit"><span class="nav-number">1.2.4.</span> <span class="nav-text">.submit()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-键盘事件"><span class="nav-number">1.3.</span> <span class="nav-text">3. 键盘事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#keydown-keyup"><span class="nav-number">1.3.1.</span> <span class="nav-text">.keydown()/keyup()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#keypress"><span class="nav-number">1.3.2.</span> <span class="nav-text">.keypress()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-事件的绑定与解绑"><span class="nav-number">1.4.</span> <span class="nav-text">4. 事件的绑定与解绑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#on"><span class="nav-number">1.4.1.</span> <span class="nav-text">.on()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#off"><span class="nav-number">1.4.2.</span> <span class="nav-text">.off()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-事件对象"><span class="nav-number">1.5.</span> <span class="nav-text">5. 事件对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#event-target"><span class="nav-number">1.5.1.</span> <span class="nav-text">.event.target</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#event-type"><span class="nav-number">1.5.2.</span> <span class="nav-text">.event.type</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#event-pageX-event-pageY"><span class="nav-number">1.5.3.</span> <span class="nav-text">.event.pageX/event.pageY</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#event-preventDefault"><span class="nav-number">1.5.4.</span> <span class="nav-text">.event.preventDefault()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#event-stopPropagation"><span class="nav-number">1.5.5.</span> <span class="nav-text">.event.stopPropagation()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#event-which"><span class="nav-number">1.5.6.</span> <span class="nav-text">.event.which</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#event-currentTarget"><span class="nav-number">1.5.7.</span> <span class="nav-text">.event.currentTarget</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-自定义事件"><span class="nav-number">1.6.</span> <span class="nav-text">6. 自定义事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#trigger"><span class="nav-number">1.6.1.</span> <span class="nav-text">.trigger()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#triggerHandler"><span class="nav-number">1.6.2.</span> <span class="nav-text">.triggerHandler()</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1241,6 +875,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
