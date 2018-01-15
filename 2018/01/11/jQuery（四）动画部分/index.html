@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="jQuery DOM部分1. DOM节点的创建直接把这个节点的结构给通过HTML标记字符串描述出来，通过$()函数处理，$(“html结构”)，包括创建元素节点，文本节点以及属性节点，如下：">
+<meta name="description" content="jQuery 动画部分1. 隐藏显示">
 <meta name="keywords" content="jQuery">
 <meta property="og:type" content="article">
-<meta property="og:title" content="jQuery学习笔记（二）DOM部分">
-<meta property="og:url" content="http://lugusliu.com/2018/01/09/jQuery学习笔记（二）DOM部分/index.html">
+<meta property="og:title" content="jQuery学习笔记（四）动画部分">
+<meta property="og:url" content="http://lugusliu.com/2018/01/11/jQuery（四）动画部分/index.html">
 <meta property="og:site_name" content="Lugus&#39;s Personal Website">
-<meta property="og:description" content="jQuery DOM部分1. DOM节点的创建直接把这个节点的结构给通过HTML标记字符串描述出来，通过$()函数处理，$(“html结构”)，包括创建元素节点，文本节点以及属性节点，如下：">
+<meta property="og:description" content="jQuery 动画部分1. 隐藏显示">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-13T15:51:22.324Z">
+<meta property="og:updated_time" content="2018-01-13T15:53:16.827Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="jQuery学习笔记（二）DOM部分">
-<meta name="twitter:description" content="jQuery DOM部分1. DOM节点的创建直接把这个节点的结构给通过HTML标记字符串描述出来，通过$()函数处理，$(“html结构”)，包括创建元素节点，文本节点以及属性节点，如下：">
+<meta name="twitter:title" content="jQuery学习笔记（四）动画部分">
+<meta name="twitter:description" content="jQuery 动画部分1. 隐藏显示">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://lugusliu.com/2018/01/09/jQuery学习笔记（二）DOM部分/"/>
+  <link rel="canonical" href="http://lugusliu.com/2018/01/11/jQuery（四）动画部分/"/>
 
 
 
 
 
-  <title>jQuery学习笔记（二）DOM部分 | Lugus's Personal Website</title>
+  <title>jQuery学习笔记（四）动画部分 | Lugus's Personal Website</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://lugusliu.com/2018/01/09/jQuery学习笔记（二）DOM部分/">
+    <link itemprop="mainEntityOfPage" href="http://lugusliu.com/2018/01/11/jQuery（四）动画部分/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lugus liu">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">jQuery学习笔记（二）DOM部分</h1>
+          <h1 class="post-title" itemprop="name headline">jQuery学习笔记（四）动画部分</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-09T23:09:45+08:00">
-                2018-01-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-11T23:42:00+08:00">
+                2018-01-11
               </time>
             
 
@@ -342,138 +342,137 @@
       
 
       
-        <h1 id="jQuery-DOM部分"><a href="#jQuery-DOM部分" class="headerlink" title="jQuery DOM部分"></a>jQuery DOM部分</h1><h2 id="1-DOM节点的创建"><a href="#1-DOM节点的创建" class="headerlink" title="1. DOM节点的创建"></a>1. DOM节点的创建</h2><p>直接把这个节点的结构给通过HTML标记字符串描述出来，通过$()函数处理，$(“html结构”)，包括创建元素节点，文本节点以及属性节点，如下：</p>
-<a id="more"></a>
-<p><code>$(&quot;&lt;div class=&#39;right&#39;&gt;&lt;div class=&#39;aaron&#39;&gt;动态创建DIV元素节点&lt;/div&gt;&lt;/div&gt;&quot;)</code></p>
-<h2 id="2-DOM节点的插入"><a href="#2-DOM节点的插入" class="headerlink" title="2. DOM节点的插入"></a>2. DOM节点的插入</h2><ul>
-<li><strong>.append()</strong></li>
-</ul>
-<p>内部插入，向每个匹配到的元素内部追加内容，前面是被插入的对象，后面是要在对象内插入的元素内容</p>
+        <h1 id="jQuery-动画部分"><a href="#jQuery-动画部分" class="headerlink" title="jQuery 动画部分"></a>jQuery 动画部分</h1><h2 id="1-隐藏显示"><a href="#1-隐藏显示" class="headerlink" title="1. 隐藏显示"></a>1. 隐藏显示</h2><a id="more"></a>
 <ul>
-<li><strong>.appendTo()</strong></li>
-</ul>
-<p>内部插入，把要插入的元素内容追加到被插入的对象中</p>
+<li><p><strong>.hide()</strong></p>
 <ul>
-<li><strong>.after()</strong></li>
+<li><p>.hide(options)<br>提供hide方法一个参数时，.hide()就会成为一个动画方法，进行动画操作</p>
+</li>
+<li><p>.hide(“fast/slow”)<br>这是一个动画设置的快捷方式，元素会执行200/600毫秒的动画后再隐藏</p>
+</li>
 </ul>
-<p>外部插入，在匹配元素集合中的每个元素后插入参数所指定的内容，作为其兄弟节点，后面的元素后移</p>
+</li>
+<li><p><strong>.show()</strong></p>
 <ul>
-<li><strong>.before()</strong></li>
+<li><p>.show(options)<br>提供show方法一个参数时，.show()就会成为一个动画方法，进行动画操作</p>
+</li>
+<li><p>.show(“fast/slow”)<br>这是一个动画设置的快捷方式，元素会执行200/600毫秒的动画后再显示</p>
+</li>
 </ul>
-<p>外部插入，在匹配元素集合中的每个元素前插入参数所指定的内容，作为其兄弟节点，前面的元素前移</p>
+</li>
+<li><p><strong>.toggle()</strong><br>如果元素是最初显示，它会被隐藏。如果是隐藏的，它会显示出来</p>
 <ul>
-<li><strong>.prepend()</strong></li>
+<li><p>.toggle([duration] [,complete])</p>
+</li>
+<li><p>.toggle(display)</p>
+</li>
 </ul>
-<p>内部插入，向每个匹配到的元素内部追加前置内容，前面是被插入的对象，后面是要在对象内插入的元素内容</p>
+</li>
+</ul>
+<h2 id="2-上卷下拉"><a href="#2-上卷下拉" class="headerlink" title="2. 上卷下拉"></a>2. 上卷下拉</h2><ul>
+<li><p><strong>.slideDown()</strong><br>该方法给匹配元素的高度的动画（下滑）</p>
 <ul>
-<li><strong>.prependTo()</strong></li>
+<li>.slideDown([duration] [,complete])</li>
 </ul>
-<p>内部插入，把要插入的元素内容追加并前置到被插入的对象中</p>
+</li>
+<li><p><strong>.slideUp()</strong><br>该方法给匹配元素的高度的动画（上滑）</p>
 <ul>
-<li><strong>.insertBefore()</strong></li>
+<li>.slideUp([duration] [,easing] [,complete])</li>
 </ul>
-<p>.before()和.insertBefore()实现同样的功能，但插入元素在方法前面，它将被放置在参数里元素的前面作为其兄弟节点</p>
+</li>
+<li><p><strong>.slideToggle()</strong><br>该方法给匹配元素的高度的动画（上滑或下滑）</p>
 <ul>
-<li><strong>.insertAfter()</strong></li>
+<li>.slideToggle([duration] [,complete])</li>
 </ul>
-<p>.after()和.insertAfter()实现同样的功能，但插入元素在方法前面，它将被放置在参数里元素的后面作为其兄弟节点</p>
-<h2 id="3-DOM节点的删除"><a href="#3-DOM节点的删除" class="headerlink" title="3. DOM节点的删除"></a>3. DOM节点的删除</h2><ul>
-<li><strong>.empty()</strong></li>
+</li>
 </ul>
-<p>移除当前元素的子元素及其后代元素，同样移除元素里的文本节点，但不移除当前元素的属性</p>
+<h2 id="3-淡入淡出"><a href="#3-淡入淡出" class="headerlink" title="3. 淡入淡出"></a>3. 淡入淡出</h2><ul>
+<li><p><strong>.fadeOut()</strong><br>隐藏所有匹配的元素，并带有淡出的过渡动画效果</p>
 <ul>
-<li><strong>.remove()</strong></li>
+<li>.fadeOut([duration] [,complete])</li>
 </ul>
-<p>将元素自身移除，同时也会移除元素内部的一切，包括绑定的事件及该元素相关的jQuery数据。并且还可以传递一个选择器表达式来过滤将被移除的匹配元素集合，选择性的删除指定的节点</p>
+</li>
+<li><p><strong>.fadeIn()</strong><br>显示所有匹配的元素，并带有淡入的过渡动画效果</p>
 <ul>
-<li><strong>.detach()</strong></li>
+<li>.fadeIn([duration] [,complete])</li>
 </ul>
-<p>临时删除页面上的节点，节点上的附加数据和绑定事件不会丢失，append()之后可以重新回到文档流，但是这个方法只能处理通过jQuery方法绑定的事件或数据</p>
-<h2 id="4-DOM节点的复制与替换"><a href="#4-DOM节点的复制与替换" class="headerlink" title="4. DOM节点的复制与替换"></a>4. DOM节点的复制与替换</h2><ul>
-<li><strong>.clone()</strong></li>
-</ul>
-<p>复制所有匹配的元素集合，包括所有匹配元素，匹配元素的下级元素，文字节点</p>
+</li>
+<li><p><strong>.fadeToggle()</strong><br>切换fadeOut与fadeIn效果，所谓”切换”，即如果元素当前是可见的，则将其隐藏(淡出)；如果元素当前是隐藏的，则使其显示(淡入)。</p>
 <ul>
-<li><strong>.clone(ture)</strong></li>
+<li>.fadeToggle([duration] [,complete])</li>
 </ul>
-<p>不仅克隆单纯的节点结构，还会把附加的事件与数据一并克隆（通过jQuery绑定的事件与数据）</p>
+</li>
+<li><p><strong>.fadeTo()</strong><br>将匹配的元素过渡到指定的opacity值</p>
 <ul>
-<li><strong>.replaceWith(newContent)</strong></li>
+<li>.fadeTo(duration, opacity, callback)</li>
 </ul>
-<p>用提供的newContent替换集合中所有匹配的元素包括其数据和事件处理程序并且返回被删除元素的集合</p>
+</li>
+</ul>
+<h2 id="4-自定义动画"><a href="#4-自定义动画" class="headerlink" title="4. 自定义动画"></a>4. 自定义动画</h2><ul>
+<li><p><strong>.animate(properties, [duration], [easing], [complete])</strong></p>
 <ul>
-<li><strong>.replaceAll(target)</strong></li>
+<li>properties<br>一个或多个css属性的键值对所构成的<strong>Object对象</strong>，注意所有用于动画的属性<strong>必须是数字的</strong></li>
+<li>duration<br>动画的执行时间，以毫秒为单位，值越大表示动画执行的越慢</li>
+<li>easing<br>jQuery库默认调用swing，如果需要其他动画，请查找相关插件</li>
+<li>complete<br>动画完成时执行的函数，在当前动画确认完成后触发</li>
 </ul>
-<p>.replaceAll()和.replaceWith()功能类似，但是目标和源相反</p>
+</li>
+<li><p><strong>.animate(properties, options)</strong></p>
 <ul>
-<li><strong>.wrap(wrappingElement)</strong></li>
+<li>properties 参数同上</li>
+<li>options 参数<ul>
+<li>duration - 设置动画执行的时间</li>
+<li>easing - 规定要使用的 easing 函数，过渡使用哪种缓动函数</li>
+<li>step：规定每个动画的每一步完成之后要执行的函数</li>
+<li>progress：每一次动画调用的时候会执行这个回调，就是一个进度的概念</li>
+<li>complete：动画完成回调</li>
 </ul>
-<p>为匹配元素集合中的每个元素周围包裹一个 HTML 结构</p>
+</li>
+</ul>
+</li>
+<li><p><strong>.stop()</strong></p>
 <ul>
-<li><strong>.wrap(function() {})</strong></li>
+<li>.stop()<br>停止第一个动画，继续执行后续动画</li>
+<li>.stop(true)<br>停止所有动画，暂停在当前状态</li>
+<li>.stop(true, true)<br>直接调到当前动画的最终状态，后续的动画全部暂停</li>
 </ul>
-<p>一个回调函数，返回用于包裹每个匹配元素的 HTML 内容或 jQuery 对象</p>
+</li>
+</ul>
+<h2 id="5-jQuery核心"><a href="#5-jQuery核心" class="headerlink" title="5. jQuery核心"></a>5. jQuery核心</h2><ul>
+<li><p><strong>.each()</strong><br>由于jQuery的实例是一个元素集合，所以大部分jQuery方法在内部都会调用each</p>
 <ul>
-<li><strong>.unwrap()</strong></li>
+<li>jQuery.each(array, callback)</li>
+<li>jQuery.each(object, callback)</li>
 </ul>
-<p>将匹配元素集合的父元素删除，保留自身（和兄弟元素）在原来的位置</p>
+<blockquote>
+<p>jQuery.each()函数会根据每次调用函数callback的返回值来决定后续动作，如果返回值为false，则停止循环</p>
+</blockquote>
+</li>
+<li><p><strong>.inArray()</strong><br>查找数组中的索引</p>
 <ul>
-<li><strong>.wrapAll(wrappingElement)</strong></li>
+<li><strong>.inArray(value, array, [fromIndex])</strong><br>若存在，返回对应的索引值，所不存在，返回-1</li>
 </ul>
-<p>为匹配元素集合中的每个元素周围统一包裹一个 HTML 结构</p>
+</li>
+<li><p><strong>.trim()</strong><br>用于去除字符串两端的空白字符</p>
 <ul>
-<li><strong>.wrapAll(function() {})</strong></li>
+<li>移除字符串开始和结尾处的所有换行符，空格（包括连续的空格）和制表符（tab）</li>
+<li>如果这些空白字符在字符串中间时，它们将会被保留，不会被移除</li>
 </ul>
-<p>一个回调函数，返回用于包裹每个匹配元素的 HTML 内容或 jQuery 对象</p>
+</li>
+<li><p><strong>.get()</strong><br>用于单独操作元素集合中的某一元素</p>
 <ul>
-<li><strong>.wrapInner()</strong></li>
+<li><strong>.get([index])</strong></li>
 </ul>
-<p>给匹配元素集合中的元素的内部，增加包裹的HTML结构</p>
+</li>
+<li><p><strong>.index()</strong><br>从匹配的元素中搜索给定元素的索引值，从0开始计数</p>
 <ul>
-<li><strong>.wrapInner(function)</strong></li>
+<li><strong>.index()</strong><br>返回jQuery对象中第一个元素相对于它同辈元素的位置</li>
+<li><strong>.index(selector)</strong><br>返回传入的元素相对于 <strong>原先</strong> 集合的位置</li>
+<li><strong>.index(element)</strong><br>返回原先元素相对于选择器匹配元素的位置。如果找不到匹配的元素，则 .index() 返回 -1</li>
 </ul>
-<p>允许我们用一个callback函数做参数，每次遇到匹配元素时，该函数被执行，返回一个DOM元素，jQuery对象，或者HTML片段，用来包住匹配元素的内容</p>
-<h2 id="5-DOM节点的遍历"><a href="#5-DOM节点的遍历" class="headerlink" title="5. DOM节点的遍历"></a>5. DOM节点的遍历</h2><ul>
-<li><strong>.children()</strong></li>
+</li>
 </ul>
-<p>返回匹配元素集合中每个元素的所有子元素，允许传一个选择器表达式，对这个合集对象进行一定的筛选</p>
-<ul>
-<li><strong>.find()</strong></li>
-</ul>
-<p>返回匹配元素集合中每个元素的后代，不包括自己，允许传一个选择器表达式，对这个合集对象进行一定的筛选</p>
-<ul>
-<li><strong>.parent()</strong></li>
-</ul>
-<p>返回匹配元素集合中每个元素的父元素（只会向上查找一级），允许传一个选择器表达式，对这个合集对象进行一定的筛选</p>
-<ul>
-<li><strong>.parents()</strong></li>
-</ul>
-<p>返回匹配元素集合中每个元素的所有父元素（会一直向上查找），允许传一个选择器表达式，对这个合集对象进行一定的筛选</p>
-<ul>
-<li><strong>.closet()</strong></li>
-</ul>
-<p>从元素本身开始，在DOM 树上逐级向上级元素匹配，并返回最先匹配的祖先元素（匹配到即停止查找），允许传一个选择器表达式，对这个合集对象进行一定的筛选</p>
-<ul>
-<li><strong>.next()</strong></li>
-</ul>
-<p>取得指定元素集合中每一个元素紧邻的后面同辈元素的元素集合，允许传一个选择器表达式，对这个合集对象进行一定的筛选</p>
-<ul>
-<li><strong>.prev()</strong></li>
-</ul>
-<p>取得指定元素集合中每一个元素紧邻的前面同辈元素的元素集合，允许传一个选择器表达式，对这个合集对象进行一定的筛选</p>
-<ul>
-<li><strong>.siblings()</strong></li>
-</ul>
-<p>取得指定元素集合中每一个元素的同辈元素的元素集合，允许传一个选择器表达式，对这个合集对象进行一定的筛选</p>
-<ul>
-<li><strong>.add()</strong></li>
-</ul>
-<p>将元素添加到匹配的元素集合中，并创建一个新的jQuery对象</p>
-<ul>
-<li><strong>.each()</strong></li>
-</ul>
-<p>一个for循环的迭代器，它会迭代jQuery对象合集中的每一个DOM元素。每次回调函数执行时，会传递当前循环次数作为参数（从0开始计数）</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"li"</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params">index, element</span>) </span>&#123;</span><br><span class="line">     index 索引 <span class="number">0</span>,<span class="number">1</span></span><br><span class="line">     element是对应的li节点 li,li</span><br><span class="line">     $(<span class="keyword">this</span>) 指向的是li</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
       
     </div>
     
@@ -503,8 +502,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/09/jQuery学习笔记（一）样式部分/" rel="next" title="jQuery学习笔记（一）样式部分">
-                <i class="fa fa-chevron-left"></i> jQuery学习笔记（一）样式部分
+              <a href="/2018/01/10/jQuery（三）事件部分/" rel="next" title="jQuery学习笔记（三）事件部分">
+                <i class="fa fa-chevron-left"></i> jQuery学习笔记（三）事件部分
               </a>
             
           </div>
@@ -513,8 +512,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/10/jQuery学习笔记（三）事件部分/" rel="prev" title="jQuery学习笔记（三）事件部分">
-                jQuery学习笔记（三）事件部分 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/13/CSS预处理器-Sass/" rel="prev" title="CSS预处理器-Sass">
+                CSS预处理器-Sass <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -661,7 +660,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#jQuery-DOM部分"><span class="nav-number">1.</span> <span class="nav-text">jQuery DOM部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-DOM节点的创建"><span class="nav-number">1.1.</span> <span class="nav-text">1. DOM节点的创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-DOM节点的插入"><span class="nav-number">1.2.</span> <span class="nav-text">2. DOM节点的插入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-DOM节点的删除"><span class="nav-number">1.3.</span> <span class="nav-text">3. DOM节点的删除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-DOM节点的复制与替换"><span class="nav-number">1.4.</span> <span class="nav-text">4. DOM节点的复制与替换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-DOM节点的遍历"><span class="nav-number">1.5.</span> <span class="nav-text">5. DOM节点的遍历</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#jQuery-动画部分"><span class="nav-number">1.</span> <span class="nav-text">jQuery 动画部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-隐藏显示"><span class="nav-number">1.1.</span> <span class="nav-text">1. 隐藏显示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-上卷下拉"><span class="nav-number">1.2.</span> <span class="nav-text">2. 上卷下拉</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-淡入淡出"><span class="nav-number">1.3.</span> <span class="nav-text">3. 淡入淡出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-自定义动画"><span class="nav-number">1.4.</span> <span class="nav-text">4. 自定义动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-jQuery核心"><span class="nav-number">1.5.</span> <span class="nav-text">5. jQuery核心</span></a></li></ol></li></ol></div>
             
 
           </div>
