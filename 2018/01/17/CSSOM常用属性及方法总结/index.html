@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Lugus&#39;s Personal Website">
 <meta property="og:description" content="CSSOM常用属性及方法1. window 视图属性">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-17T13:57:09.922Z">
+<meta property="og:updated_time" content="2018-01-18T16:01:00.640Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CSSOM常用属性及方法总结">
 <meta name="twitter:description" content="CSSOM常用属性及方法1. window 视图属性">
@@ -360,7 +360,10 @@
 </li>
 </ul>
 <h2 id="3-Document视图方法"><a href="#3-Document视图方法" class="headerlink" title="3. Document视图方法"></a>3. Document视图方法</h2><ul>
-<li><code>getBoundingClientRect()</code><br>使用此方法可以得到元素的矩形界限，返回值是一个对象，包含<code>top</code>，<code>right</code>，<code>bottom</code> 和 <code>left</code>四个属性值，大小都是相对于文档视图的左上角计算得到的</li>
+<li><p><code>getBoundingClientRect()</code><br>使用此方法可以得到元素的矩形界限，返回值是一个对象，包含<code>top</code>，<code>right</code>，<code>bottom</code> 和 <code>left</code>四个属性值，大小都是相对于文档视图的左上角计算得到的</p>
+</li>
+<li><p><code>scrollIntoView()</code><br>让元素滚动到可视区域，可传入一个对象，配置相应的参数</p>
+</li>
 </ul>
 <h2 id="4-Element-Object-相关属性"><a href="#4-Element-Object-相关属性" class="headerlink" title="4. Element Object 相关属性"></a>4. Element Object 相关属性</h2><ul>
 <li><p><code>clientWidth</code> 和 <code>clientHeight</code><br>表示内容区域加上 <code>padding</code> 区域的大小，不包括 <code>border</code> 以及 <code>margin</code> 和滚动条</p>
