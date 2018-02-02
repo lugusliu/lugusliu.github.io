@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="javascript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="浏览器中的进程与线程进程与线程">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器中的进程与线程">
+<meta property="og:url" content="http://lugusliu.com/2018/02/02/浏览器中的进程与线程/index.html">
+<meta property="og:site_name" content="Lugus&#39;s Personal Website">
+<meta property="og:description" content="浏览器中的进程与线程进程与线程">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://lugusliu.com/2018/02/02/浏览器中的进程与线程/process-in-browser.png">
+<meta property="og:image" content="http://lugusliu.com/2018/02/02/浏览器中的进程与线程/threads-in-render-process.png">
+<meta property="og:image" content="http://lugusliu.com/2018/02/02/浏览器中的进程与线程/browser-process-and-render-process.png">
+<meta property="og:image" content="http://lugusliu.com/2018/02/02/浏览器中的进程与线程/browser-process-and-render-process.png">
+<meta property="og:updated_time" content="2018-02-02T15:59:18.626Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浏览器中的进程与线程">
+<meta name="twitter:description" content="浏览器中的进程与线程进程与线程">
+<meta name="twitter:image" content="http://lugusliu.com/2018/02/02/浏览器中的进程与线程/process-in-browser.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://lugusliu.com/2018/02/02/浏览器中的进程与线程/"/>
+
+
+
+
+
+  <title>浏览器中的进程与线程 | Lugus's Personal Website</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lugus's Personal Website</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lugusliu.com/2018/02/02/浏览器中的进程与线程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lugus liu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/lugus.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lugus's Personal Website">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">浏览器中的进程与线程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-02T23:56:30+08:00">
+                2018-02-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/深入理解/" itemprop="url" rel="index">
+                    <span itemprop="name">深入理解</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="浏览器中的进程与线程"><a href="#浏览器中的进程与线程" class="headerlink" title="浏览器中的进程与线程"></a>浏览器中的进程与线程</h1><h2 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h2><a id="more"></a>
+<h3 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h3><p>进程是一个具有一定独立功能的程序在一个数据集上的一次动态执行的过程，是操作系统进行资源分配和调度的一个独立单位，是应用程序的载体。进程拥有系统分配的独立的内存空间，进程之间相互独立。任一时刻，CPU总是运行一个进程，其它进程处于非运行状态。<br>如果把CPU比作一座时刻在运行的工厂的话，进程就相当于工厂里的车间，并且这个车间开工的时候，其它车间都必须停工。</p>
+<h3 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h3><p>线程是程序执行中一个单一的顺序控制流程，是程序执行流的最小单元，是CPU调度的最小单位。一个进程有一个或多个线程组成，同一进程下的各个线程之间共享程序的内存空间。<br>类似于上面的比喻，线程就相当于车间里的工人，车间的空间是工人们共享的。车间里的任务可由多个工人协同完成。</p>
+<h3 id="进程与线程的区别与联系"><a href="#进程与线程的区别与联系" class="headerlink" title="进程与线程的区别与联系"></a>进程与线程的区别与联系</h3><ul>
+<li>进程是操作系统分配资源的最小单位，线程是程序执行的最小单位。</li>
+<li>进程之间相互独立，但同一进程下的各个线程之间共享程序的内存空间以及进程级资源</li>
+<li>进程间切换的代价要比线程间切换的代价大得多</li>
+</ul>
+<h3 id="多进程与多线程"><a href="#多进程与多线程" class="headerlink" title="多进程与多线程"></a>多进程与多线程</h3><p>简单的来说，多进程就是在某一时刻，计算机系统中允许两个或两个以上的进程处于运行状态，而多线程就是在一个程序中可以运行多个不同的并行执行线程来执行不同的任务。</p>
+<h2 id="浏览器中的进程"><a href="#浏览器中的进程" class="headerlink" title="浏览器中的进程"></a>浏览器中的进程</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>打开 chrome 浏览器左上角更多工具里面的任务管理器可以看到许多进程，如下</p>
+<p><img src="/2018/02/02/浏览器中的进程与线程/process-in-browser.png" alt="process in browser"></p>
+<p>可以看到一个浏览器主进程，GPU进程以及很多个tab标签页进程，每个进程系统都为其分配了资源（CPU，内存，网络等）。从图中还可以看出第六个进程下面有四个标签页，且这四个标签页中的第二个是由第一个标签页中的链接开的，同理第三个是由第二个标签页中的链接打开的。这和在同一个标签内实现跳转是一样的，浏览器都只为其新开一个进程并分配资源</p>
+<ol>
+<li>Browser进程 - 一个浏览器打开后只有一个，浏览器的主进程，主要负责浏览器用户界面的显示与交互，各个页面的管理，创建和销毁，网络资源的管理。还有就是将Render进程得到的内存中的Bitmap绘制到用户界面上。</li>
+<li>第三方插件进程 - 每个种类的插件对应一个进程，但只有启用时才会被创建</li>
+<li>GPU进程 - 最多只有一个，用于3D绘制</li>
+<li>Render进程 - 又称为浏览器内核或浏览器渲染进程，内部是多线程的。分别由GUI渲染线程，JS引擎线程，定时触发器线程，事件触发线程以及异步http请求线程</li>
+</ol>
+<h3 id="多进程的优势与劣势"><a href="#多进程的优势与劣势" class="headerlink" title="多进程的优势与劣势"></a>多进程的优势与劣势</h3><ul>
+<li>由于默认是 <strong>新开</strong> 一个 tab 页面 <strong>新建</strong> 一个进程，所以单个 tab 页面 crash 不会影响到整个浏览器</li>
+<li>同样的，某个第三方插件 crash 也不会影响到这个浏览器</li>
+<li>多进程可以充分利用现代CPU多核的优势</li>
+<li>方便利用沙盒模型隔离插件以及相关 tab 页面进程，提高浏览器的稳定性与安全性</li>
+<li>系统会为浏览器新开的进程分配内存，CPU 等资源，所以内存和 CPU 的资源消耗也会更大</li>
+</ul>
+<h2 id="浏览器内核"><a href="#浏览器内核" class="headerlink" title="浏览器内核"></a>浏览器内核</h2><h3 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h3><p>浏览器内核是诸多浏览器进程中前端最应该关注的进程，因为页面的渲染，JS的执行，事件以及定时器等诸多线程都会在这个进程中进行。下图主要列举了一些常见浏览器的 Layout Engine（GUI渲染引擎） 和 ECMAScript Engine（JS引擎） 以及浏览器内核中的一些常驻线程</p>
+<table>
+<thead>
+<tr>
+<th>Browser Name</th>
+<th>Layout Engine</th>
+<th>ECMAScript Engine</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Internet Explore 9+</td>
+<td>Trident</td>
+<td>Chakra</td>
+</tr>
+<tr>
+<td>Microsoft Edge</td>
+<td>EdgeHTML</td>
+<td>Chakra</td>
+</tr>
+<tr>
+<td>FireFox</td>
+<td>Gecko</td>
+<td>SpiderMonkey</td>
+</tr>
+<tr>
+<td>Safari</td>
+<td>WebKit</td>
+<td>JavaScriptCore</td>
+</tr>
+<tr>
+<td>Chrome</td>
+<td>Blink</td>
+<td>V8</td>
+</tr>
+<tr>
+<td>Opera</td>
+<td>Blink</td>
+<td>V8</td>
+</tr>
+</tbody>
+</table>
+<p><img src="/2018/02/02/浏览器中的进程与线程/threads-in-render-process.png" alt="main threads in render process"></p>
+<h3 id="常驻线程"><a href="#常驻线程" class="headerlink" title="常驻线程"></a>常驻线程</h3><ol>
+<li>GUI 渲染线程<ul>
+<li>负责渲染浏览器界面，解析 html，解析 css，构建 DOM tree，构建 Style tree，构建 render tree，负责布局（Layout）以及绘制（Painting）</li>
+<li>当界面需要重绘（repaint）以及回流（reflow）时，该线程也会执行，这两个操作也是导致网站性能的关键原因</li>
+<li>GUI 线程与 JS 引擎线程是互斥的，当 JS 引擎执行时 GUI 线程会被挂起，GUI 更新会被保存在一个队列中等到 JS 引擎空闲时立即被执行</li>
+</ul>
+</li>
+<li>JS 引擎线程<ul>
+<li>又称 JS 内核，负责解析 JavaScript 脚本程序，运行代码</li>
+<li>JS 引擎一直等待这任务队列中的任务到来，然后处理，即浏览器内核中只有一个 JS 线程在运行 JS 程序</li>
+<li>由于 JS 引擎与 GUI 渲染引擎两个线程是互斥的，所以 JS 执行脚本时间过长会引起页面渲染加载阻塞导致其渲染的不连贯</li>
+</ul>
+</li>
+<li>事件触发线程<ul>
+<li>当一个事件如鼠标点击，键盘按下以及 AJAX 异步请求等被触发时，该线程会把该事件添加到事件队列的尾部等待 JS 引擎的处理</li>
+<li>由于 JS 引擎是单线程的，这些处于事件队列中的事件都必须排队等待 JS 引擎空闲时处理</li>
+</ul>
+</li>
+<li>定时器触发线程<ul>
+<li><code>setInterval</code> 和 <code>setTimeOut</code> 所在线程，计数器由该线程进行金属而不是由 JS 引擎完成的</li>
+<li>计时完毕后，添加到事件队列中等待 JS 引擎空闲时执行</li>
+<li>在 W3C HTML 标准中规定，要求 setTimeOut 中低于4ms的时间间隔算为4ms，不过不同的浏览器可能会有不同的最小时间设定。</li>
+</ul>
+</li>
+<li>异步 http 请求线程<ul>
+<li>XMLHttpRequest对象在建立连接后，浏览器为其新开一个线程请求，一旦检测到状态变更且设置有回调函数，异步线程就将产生状态变更的时间放到时间队列中等待 JS 引擎空闲时处理</li>
+</ul>
+</li>
+</ol>
+<h3 id="JS引擎为何为单线程？"><a href="#JS引擎为何为单线程？" class="headerlink" title="JS引擎为何为单线程？"></a>JS引擎为何为单线程？</h3><p>单线程的本质就是同一时间只能做一件事。JS 的单线程与它的用途有关，作为脚本语言，JS 的主要用途是帮助浏览器与用户互动以及操作DOM。假如 JS 同时有两个线程并同时操作一个DOM节点，一个为该节点添加内容，一个准备删除该节点，浏览器就不知道以谁为准了，而且引入加锁的问题。这也就违背了 JS 避免复杂性的设计初衷。虽然为了利用 CPU 多核的计算能力，HTML5 提出了 Web Worker的标准，允许 JS 脚本创建多个线程，但是子线程完全受主线程控制，而且不能对 DOM 进行操作，所以也并没有改变 JS 引擎为单线程的本质。<br>如果有特别耗时的操作可以新开一个单独的 Worker 线程进行处理<br>详细可参见<a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API" target="_blank" rel="noopener">Web Workers concepts and usage</a></p>
+<h3 id="Browser-进程与浏览器内核的通信过程"><a href="#Browser-进程与浏览器内核的通信过程" class="headerlink" title="Browser 进程与浏览器内核的通信过程"></a>Browser 进程与浏览器内核的通信过程</h3><p><img src="/2018/02/02/浏览器中的进程与线程/browser-process-and-render-process.png" alt="browser process and render process"></p>
+<ul>
+<li>Browser 进程收到用户请求，通过网络下载获取页面内容，将该任务内容通过 RenderHost 接口传递给 Render 进程</li>
+<li>Render 进程收到请求，简单解释后交给 GUI 渲染进程开始渲染<ul>
+<li>GUI 渲染进程接受请求开始加载并渲染网页，并且在此过程中可能需要 Browser 进程获取资源和需要 GPU 进程帮助渲染</li>
+<li>期间也可能会有 JS 引擎线程操作 DOM，可能引起重绘（repainting）或回流（reflow）</li>
+<li>Render 进程最后将结果通过 RenderHost 接口返回给 Browser 进程</li>
+</ul>
+</li>
+<li>Browser 进程接受结果并将其绘制到屏幕上</li>
+</ul>
+<h3 id="网页生成的简易过程"><a href="#网页生成的简易过程" class="headerlink" title="网页生成的简易过程"></a>网页生成的简易过程</h3><p>在浏览器进程将内容通过 RenderHost 接口传递给浏览器内核后，过程大致分为以下几个部分</p>
+<p><img src="/2018/02/02/浏览器中的进程与线程/browser-process-and-render-process.png" alt="browser process and render process"></p>
+<ol>
+<li>解析 html 构建 dom 树</li>
+<li>解析 css 构建 style 树</li>
+<li>结合 DOM 合并成 render 树</li>
+<li>布局（layout） render 树，负责各个元素尺寸，位置的计算</li>
+<li>绘制（painting） render 树，绘制页面信息</li>
+<li>浏览器将各层的信息发送给 GPU，GPU会将各层合成（composite），显示在屏幕上</li>
+</ol>
+<p>从上述过程中，我们可以很容易的得到以下结论</p>
+<ul>
+<li>通常情况下，一张网页中的<code>DOMContentLoaded</code>事件（当DOM加载完成，不包括样式表，图片，事件触发）要比<code>load</code>事件（DOM，样式表，脚本，图片都已经加载完成了）先发生</li>
+<li>CSS是由单独的下载线程异步下载的，不会阻塞 DOM 树的解析，但会阻止 render 树的渲染</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://segmentfault.com/a/1190000012925872" target="_blank" rel="noopener">从浏览器多进程到JS单线程，JS运行机制最全面的一次梳理</a><br><a href="https://www.cnblogs.com/lhb25/p/how-browsers-work.html" target="_blank" rel="noopener">前端文摘：深入解析浏览器的幕后工作原理</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/02/javascript-Event-Loop/" rel="next" title="javascript-Event Loop">
+                <i class="fa fa-chevron-left"></i> javascript-Event Loop
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/lugus.jpg"
+                alt="lugus liu" />
+            
+              <p class="site-author-name" itemprop="name">lugus liu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/lugusliu" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#浏览器中的进程与线程"><span class="nav-number">1.</span> <span class="nav-text">浏览器中的进程与线程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#进程与线程"><span class="nav-number">1.1.</span> <span class="nav-text">进程与线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#进程"><span class="nav-number">1.1.1.</span> <span class="nav-text">进程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程"><span class="nav-number">1.1.2.</span> <span class="nav-text">线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程与线程的区别与联系"><span class="nav-number">1.1.3.</span> <span class="nav-text">进程与线程的区别与联系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多进程与多线程"><span class="nav-number">1.1.4.</span> <span class="nav-text">多进程与多线程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器中的进程"><span class="nav-number">1.2.</span> <span class="nav-text">浏览器中的进程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念"><span class="nav-number">1.2.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多进程的优势与劣势"><span class="nav-number">1.2.2.</span> <span class="nav-text">多进程的优势与劣势</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器内核"><span class="nav-number">1.3.</span> <span class="nav-text">浏览器内核</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概要"><span class="nav-number">1.3.1.</span> <span class="nav-text">概要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常驻线程"><span class="nav-number">1.3.2.</span> <span class="nav-text">常驻线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JS引擎为何为单线程？"><span class="nav-number">1.3.3.</span> <span class="nav-text">JS引擎为何为单线程？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Browser-进程与浏览器内核的通信过程"><span class="nav-number">1.3.4.</span> <span class="nav-text">Browser 进程与浏览器内核的通信过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网页生成的简易过程"><span class="nav-number">1.3.5.</span> <span class="nav-text">网页生成的简易过程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">1.4.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lugus liu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="javascript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="JavaScript 事件循环">
+<meta name="keywords" content="javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript-Event Loop">
+<meta property="og:url" content="http://lugusliu.com/2018/02/02/javascript-Event-Loop/index.html">
+<meta property="og:site_name" content="Lugus&#39;s Personal Website">
+<meta property="og:description" content="JavaScript 事件循环">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://lugusliu.com/2018/02/02/javascript-Event-Loop/task-queue.png">
+<meta property="og:image" content="http://lugusliu.com/2018/02/02/javascript-Event-Loop/event-loop.png">
+<meta property="og:image" content="http://lugusliu.com/2018/02/02/javascript-Event-Loop/macro-micro-task.png">
+<meta property="og:updated_time" content="2018-02-02T15:59:07.314Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="javascript-Event Loop">
+<meta name="twitter:description" content="JavaScript 事件循环">
+<meta name="twitter:image" content="http://lugusliu.com/2018/02/02/javascript-Event-Loop/task-queue.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://lugusliu.com/2018/02/02/javascript-Event-Loop/"/>
+
+
+
+
+
+  <title>javascript-Event Loop | Lugus's Personal Website</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lugus's Personal Website</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://lugusliu.com/2018/02/02/javascript-Event-Loop/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lugus liu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/lugus.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lugus's Personal Website">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">javascript-Event Loop</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-02T23:55:53+08:00">
+                2018-02-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/深入理解/" itemprop="url" rel="index">
+                    <span itemprop="name">深入理解</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="JavaScript-事件循环"><a href="#JavaScript-事件循环" class="headerlink" title="JavaScript 事件循环"></a>JavaScript 事件循环</h1><a id="more"></a>
+<p>由于 JavaScript 语言是单线程的，也就是同一时间只能做一件事，前一个任务结束才会执行后一个任务。如果一个任务的时间很长（譬如 IO 设备很慢，需要从网络读取数据等），那么它的下一个任务就不得不等着，这也就造成了严重的 CPU资源的浪费。</p>
+<h2 id="任务队列（task-queue）"><a href="#任务队列（task-queue）" class="headerlink" title="任务队列（task queue）"></a>任务队列（task queue）</h2><p>该语言的设计者意识到，此时主线程可以不管 IO 设备，挂起正在等待 IO 设备的任务，继续运行后面的任务。等到 IO 设备返回结果之后再将之前挂起的任务接着执行下去。</p>
+<p>在 JavaScript 中，所有的任务可分为两种，<strong>同步任务</strong>（synchronous）和 <strong>异步任务</strong>（asynchronous）。所有的 <strong>同步任务</strong> 都在主线程上执行，形成一个 <strong>执行栈</strong>（execution context stack）。在主线程之外，还存在一个 <strong>任务队列</strong>（task queue，是一个先进先出的数据结构），只要异步任务（另外的线程处理的）有了运行结果，就在 <strong>任务队列</strong> 中放置一个事件。一旦 <strong>执行栈</strong> 中所有的 <strong>同步任务</strong> 执行完毕，系统就会读取 <strong>任务队列</strong> 里头部的事件进入 <strong>执行栈</strong> 开始执行。<strong>执行栈</strong> 空了以后，主线程又会去读取 <strong>任务队列</strong> 是否有任务可以载入 <strong>执行栈</strong> 执行，如此往复。因此又被称为 <strong>事件循环</strong></p>
+<p><img src="/2018/02/02/javascript-Event-Loop/task-queue.png" alt="task queue"></p>
+<p>如上图所示，<strong>任务队列</strong> 也是一个事件队列或消息队列。除了 IO 设备的事件以外，还包括用户产生的事件，如鼠标点击、键盘按下、页面滚动以及JS中的定时器等等。只要指定 <strong>回调函数</strong>，这些事件发生时就会进入 <strong>任务队列</strong> 等待主线程读取进入 <strong>执行栈</strong> 执行。<br><strong>回调函数</strong>（callback），就是那些被主进程挂起来的代码，异步任务必须指定回调函数，当事件进入 <strong>执行栈</strong> 开始执行的时候，主线程执行的就是这个事件对应的回调函数。</p>
+<h2 id="事件循环（event-loop）"><a href="#事件循环（event-loop）" class="headerlink" title="事件循环（event loop）"></a>事件循环（event loop）</h2><p>主线程从 <strong>任务队列</strong> 中读取事件，执行完毕，清空执行栈，继续读取任务队列中的事件。这一中运行机制又被称为 <strong>事件循环</strong></p>
+<p><img src="/2018/02/02/javascript-Event-Loop/event-loop.png" alt="event loop"></p>
+<p>上图中，主线程运行的时候，会产生栈（stack）和堆（heap）。Number、String、Boolean等基本类型主要存放在栈中，且会在程序执行完毕后从栈中弹出。而对象、数组等值则位于堆中，执行栈中存储的变量其实是指向它们的指针，让这些值可以在不同的栈帧中变化，程序执行完毕后指针弹出，而对象失去作用后会被垃圾回收机制回收并释放空间。</p>
+<p>在栈中的代码会调用各种外部 API，满足触发条件后，就会在任务队列中添加各种事件。等执行栈空闲，主线程便会读取任务队列头部待执行的事件载入执行栈执行。</p>
+<p>总的来说，执行栈中的代码（同步代码），总是在读取任务队列里的事件（异步任务）之前执行。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="number">1</span>);</span><br><span class="line">setTimeOut(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123; <span class="built_in">console</span>.log(<span class="number">2</span>) &#125;, <span class="number">0</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">3</span>);</span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+<h2 id="macrotask与microtask"><a href="#macrotask与microtask" class="headerlink" title="macrotask与microtask"></a>macrotask与microtask</h2><p>ES6 中的Promise里又有了一个新的概念 <code>microtask</code> 。进一步，JS 的 <strong>任务队列</strong> 又分为两种任务类型：<code>macrotask</code> 与 <code>microtask</code>。且 JS 主线程在第一次运行 <strong>执行栈</strong> 中的代码时也算做一次 <code>macrotask</code> 的执行。</p>
+<ul>
+<li><p><code>macrotask</code>，又称为宏任务（task），每次执行栈执行的代码就是一个宏任务，执行这个 task 的过程中不会执行其它任务。另外浏览器会在一个 task 执行结束后，下一个 task执行之前，对页面进行重新渲染。常见的 task 有：<code>setTimeOut</code>，<code>setInterval</code>，<code>setImmediate</code> 以及 <code>I/O</code>。</p>
+</li>
+<li><p><code>microtask</code>，又称为微任务（jobs），是在当前 task 执行结束后立即执行的任务，也即是当前 task 之后，下一个 task 之前（浏览器重新渲染之前）。所以 jobs 的响应速度比 task 更快，因为无需等待渲染。另外在某一个 task 执行完后，就会将在它执行期间产生（jobs 执行期间产生的也会被执行）的所有的 jobs。常见的 jobs 有：<code>promise</code>，<code>process.nextTick</code> 以及 <code>Object.observe</code>。</p>
+</li>
+</ul>
+<p><img src="/2018/02/02/javascript-Event-Loop/macro-micro-task.png" alt="macrotask and microtask"></p>
+<p>简单梳理一下就是：</p>
+<ol>
+<li>首先 JS 引擎主线程执行执行栈中的 <code>macrotask</code>（若执行栈为空，则读取任务队列里的 <code>macrotask</code>）。</li>
+<li>执行过程中如果遇到 <code>microtask</code>，就将它添加到 <code>microtask</code> 的 <code>jobs queue</code> 中。</li>
+<li><code>macrotask</code> 执行完成后，立即依次执行 <code>jobs queue</code> 中的所有 <code>microtask</code>，如果还遇到 <code>microtask</code>，就依旧将它添加到 <code>microtask</code> 的 <code>jobs queue</code> 中，并一一执行。</li>
+<li>上述过程执行一轮完毕后，开始检查渲染，然后 GUI 线程接管渲染。</li>
+<li>渲染结束后，JS主线程继续接管，读取任务队列，开始下一个 <code>macrotask</code>。</li>
+</ol>
+<p>还有一点，在 ES6 官方版本中的 <code>Promise</code> 是标准的 <code>microtask</code> 形式，但其 <code>polyfill</code> 中，一般都是通过 <code>setTimeOut</code> 模拟的，所以是 <code>macrotask</code> 的形式。</p>
+<h2 id="一个实例"><a href="#一个实例" class="headerlink" title="一个实例"></a>一个实例</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'script start'</span>);</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'setTimeout'</span>);</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.resolve().then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'promise1'</span>);</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'promise2'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'script end'</span>);</span><br><span class="line"><span class="comment">// script start</span></span><br><span class="line"><span class="comment">// script end</span></span><br><span class="line"><span class="comment">// promise 1</span></span><br><span class="line"><span class="comment">// promise 2</span></span><br><span class="line"><span class="comment">// setTimeout</span></span><br></pre></td></tr></table></figure>
+<p>简要说明下上面的例子的执行过程：</p>
+<p>Cycle1：</p>
+<ol>
+<li>JS 主线程开始执行执行栈里面的同步任务（第一个 <code>macrotask</code> 开始）</li>
+<li>“script start” 打印</li>
+<li>setTimeout 被添加到 <code>macrotask</code> 队列</li>
+<li>Promise then 被添加到 <code>microtask</code> 队列</li>
+<li>“script end” 打印</li>
+<li>第一个 <code>macrotask</code> 执行完成，执行栈清空， <code>microtask</code> 队列任务 Promise callback 进入执行栈开始执行</li>
+<li>“promise 1” 打印，第二个 Promise then被添加到 <code>microtask</code> 队列，执行栈清空</li>
+<li>开始执行第二个 Promise callback，打印 “promise 2”</li>
+<li>此时执行栈清空，<code>microtask</code> 队列也为空</li>
+<li>浏览器在此时按需进行渲染，第一个事件循环结束</li>
+</ol>
+<p>Cycle2：</p>
+<ol>
+<li><code>macrotask</code> 队列里的 setTimeOut callback 载入执行栈开始执行</li>
+<li>打印 “setTimeOut”，执行栈清空，<code>macrotask</code> 队列清空</li>
+<li><code>microtask</code> 队列也为空</li>
+<li>浏览器在此时按需进行渲染，第二个事件循环结束</li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://segmentfault.com/a/1190000012925872" target="_blank" rel="noopener">从浏览器多进程到JS单线程，JS运行机制最全面的一次梳理</a><br><a href="http://www.zcfy.cc/article/node-js-at-scale-understanding-the-node-js-event-loop-risingstack-1652.html#%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF" target="_blank" rel="noopener">理解 Node.js 事件循环</a><br><a href="http://www.ruanyifeng.com/blog/2014/10/event-loop.html#comment-text" target="_blank" rel="noopener">JavaScript 运行机制详解：再谈Event Loop</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/26/javascript-关键字this/" rel="next" title="javascript-关键字this">
+                <i class="fa fa-chevron-left"></i> javascript-关键字this
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/02/02/浏览器中的进程与线程/" rel="prev" title="浏览器中的进程与线程">
+                浏览器中的进程与线程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/lugus.jpg"
+                alt="lugus liu" />
+            
+              <p class="site-author-name" itemprop="name">lugus liu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/lugusliu" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaScript-事件循环"><span class="nav-number">1.</span> <span class="nav-text">JavaScript 事件循环</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#任务队列（task-queue）"><span class="nav-number">1.1.</span> <span class="nav-text">任务队列（task queue）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件循环（event-loop）"><span class="nav-number">1.2.</span> <span class="nav-text">事件循环（event loop）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#macrotask与microtask"><span class="nav-number">1.3.</span> <span class="nav-text">macrotask与microtask</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一个实例"><span class="nav-number">1.4.</span> <span class="nav-text">一个实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">1.5.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lugus liu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
