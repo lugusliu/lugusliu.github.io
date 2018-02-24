@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="jQuery," />
+  <meta name="keywords" content="css,javascript,html,DOM,DOM渲染,DOM解析," />
 
 
 
@@ -79,18 +79,22 @@
 
 
 
-<meta name="description" content="jQuery 动画部分1. 隐藏显示">
-<meta name="keywords" content="jQuery">
+<meta name="description" content="CSS或JS对DOM的解析以及渲染的影响通常网页的 css 样式一般写在 &amp;lt;head&amp;gt; 标签内，而 js 脚本一般放在 &amp;lt;body&amp;gt; 标签的最底部或在外链的脚本上使用 defer 或 async 属性。这些都是为了优化样式或者脚本给 DOM 的解析或渲染所带来的影响。下面就将结合具体的例子做具体的探讨 CSS样式与DOM解析与渲染的关系下面为一个 demo &amp;lt;body">
+<meta name="keywords" content="css,javascript,html,DOM,DOM渲染,DOM解析">
 <meta property="og:type" content="article">
-<meta property="og:title" content="jQuery（四）动画部分">
-<meta property="og:url" content="http://lugusliu.com/2018/01/11/jQuery（四）动画部分/index.html">
+<meta property="og:title" content="CSS或JS对DOM的解析以及渲染的影响">
+<meta property="og:url" content="http://lugusliu.com/2018/02/23/CSS或JS对DOM的解析以及渲染的影响/index.html">
 <meta property="og:site_name" content="Lugus&#39;s Personal Website">
-<meta property="og:description" content="jQuery 动画部分1. 隐藏显示">
+<meta property="og:description" content="CSS或JS对DOM的解析以及渲染的影响通常网页的 css 样式一般写在 &amp;lt;head&amp;gt; 标签内，而 js 脚本一般放在 &amp;lt;body&amp;gt; 标签的最底部或在外链的脚本上使用 defer 或 async 属性。这些都是为了优化样式或者脚本给 DOM 的解析或渲染所带来的影响。下面就将结合具体的例子做具体的探讨 CSS样式与DOM解析与渲染的关系下面为一个 demo &amp;lt;body">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-15T15:46:51.357Z">
+<meta property="og:image" content="http://lugusliu.com/2018/02/23/CSS或JS对DOM的解析以及渲染的影响/dev-tool-setting.png">
+<meta property="og:image" content="http://lugusliu.com/2018/02/23/CSS或JS对DOM的解析以及渲染的影响/sync-css-dom-parse-render.png">
+<meta property="og:image" content="http://lugusliu.com/2018/02/23/CSS或JS对DOM的解析以及渲染的影响/sync-js-dom-parse-render.png">
+<meta property="og:updated_time" content="2018-02-23T15:10:47.768Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="jQuery（四）动画部分">
-<meta name="twitter:description" content="jQuery 动画部分1. 隐藏显示">
+<meta name="twitter:title" content="CSS或JS对DOM的解析以及渲染的影响">
+<meta name="twitter:description" content="CSS或JS对DOM的解析以及渲染的影响通常网页的 css 样式一般写在 &amp;lt;head&amp;gt; 标签内，而 js 脚本一般放在 &amp;lt;body&amp;gt; 标签的最底部或在外链的脚本上使用 defer 或 async 属性。这些都是为了优化样式或者脚本给 DOM 的解析或渲染所带来的影响。下面就将结合具体的例子做具体的探讨 CSS样式与DOM解析与渲染的关系下面为一个 demo &amp;lt;body">
+<meta name="twitter:image" content="http://lugusliu.com/2018/02/23/CSS或JS对DOM的解析以及渲染的影响/dev-tool-setting.png">
 
 
 
@@ -120,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://lugusliu.com/2018/01/11/jQuery（四）动画部分/"/>
+  <link rel="canonical" href="http://lugusliu.com/2018/02/23/CSS或JS对DOM的解析以及渲染的影响/"/>
 
 
 
 
 
-  <title>jQuery（四）动画部分 | Lugus's Personal Website</title>
+  <title>CSS或JS对DOM的解析以及渲染的影响 | Lugus's Personal Website</title>
   
 
 
@@ -253,7 +257,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://lugusliu.com/2018/01/11/jQuery（四）动画部分/">
+    <link itemprop="mainEntityOfPage" href="http://lugusliu.com/2018/02/23/CSS或JS对DOM的解析以及渲染的影响/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lugus liu">
@@ -270,7 +274,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">jQuery（四）动画部分</h1>
+          <h1 class="post-title" itemprop="name headline">CSS或JS对DOM的解析以及渲染的影响</h1>
         
 
         <div class="post-meta">
@@ -282,8 +286,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-11T23:42:00+08:00">
-                2018-01-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-23T21:56:11+08:00">
+                2018-02-23
               </time>
             
 
@@ -305,8 +309,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/学习笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">学习笔记</span>
+                  <a href="/categories/深入理解/" itemprop="url" rel="index">
+                    <span itemprop="name">深入理解</span>
                   </a>
                 </span>
 
@@ -342,136 +346,15 @@
       
 
       
-        <h1 id="jQuery-动画部分"><a href="#jQuery-动画部分" class="headerlink" title="jQuery 动画部分"></a>jQuery 动画部分</h1><h2 id="1-隐藏显示"><a href="#1-隐藏显示" class="headerlink" title="1. 隐藏显示"></a>1. 隐藏显示</h2><a id="more"></a>
-<ul>
-<li><p><strong>.hide()</strong></p>
-<ul>
-<li><p>.hide(options)<br>提供hide方法一个参数时，.hide()就会成为一个动画方法，进行动画操作</p>
-</li>
-<li><p>.hide(“fast/slow”)<br>这是一个动画设置的快捷方式，元素会执行200/600毫秒的动画后再隐藏</p>
-</li>
-</ul>
-</li>
-<li><p><strong>.show()</strong></p>
-<ul>
-<li><p>.show(options)<br>提供show方法一个参数时，.show()就会成为一个动画方法，进行动画操作</p>
-</li>
-<li><p>.show(“fast/slow”)<br>这是一个动画设置的快捷方式，元素会执行200/600毫秒的动画后再显示</p>
-</li>
-</ul>
-</li>
-<li><p><strong>.toggle()</strong><br>如果元素是最初显示，它会被隐藏。如果是隐藏的，它会显示出来</p>
-<ul>
-<li><p>.toggle([duration] [,complete])</p>
-</li>
-<li><p>.toggle(display)</p>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="2-上卷下拉"><a href="#2-上卷下拉" class="headerlink" title="2. 上卷下拉"></a>2. 上卷下拉</h2><ul>
-<li><p><strong>.slideDown()</strong><br>该方法给匹配元素的高度的动画（下滑）</p>
-<ul>
-<li>.slideDown([duration] [,complete])</li>
-</ul>
-</li>
-<li><p><strong>.slideUp()</strong><br>该方法给匹配元素的高度的动画（上滑）</p>
-<ul>
-<li>.slideUp([duration] [,easing] [,complete])</li>
-</ul>
-</li>
-<li><p><strong>.slideToggle()</strong><br>该方法给匹配元素的高度的动画（上滑或下滑）</p>
-<ul>
-<li>.slideToggle([duration] [,complete])</li>
-</ul>
-</li>
-</ul>
-<h2 id="3-淡入淡出"><a href="#3-淡入淡出" class="headerlink" title="3. 淡入淡出"></a>3. 淡入淡出</h2><ul>
-<li><p><strong>.fadeOut()</strong><br>隐藏所有匹配的元素，并带有淡出的过渡动画效果</p>
-<ul>
-<li>.fadeOut([duration] [,complete])</li>
-</ul>
-</li>
-<li><p><strong>.fadeIn()</strong><br>显示所有匹配的元素，并带有淡入的过渡动画效果</p>
-<ul>
-<li>.fadeIn([duration] [,complete])</li>
-</ul>
-</li>
-<li><p><strong>.fadeToggle()</strong><br>切换fadeOut与fadeIn效果，所谓”切换”，即如果元素当前是可见的，则将其隐藏(淡出)；如果元素当前是隐藏的，则使其显示(淡入)。</p>
-<ul>
-<li>.fadeToggle([duration] [,complete])</li>
-</ul>
-</li>
-<li><p><strong>.fadeTo()</strong><br>将匹配的元素过渡到指定的opacity值</p>
-<ul>
-<li>.fadeTo(duration, opacity, callback)</li>
-</ul>
-</li>
-</ul>
-<h2 id="4-自定义动画"><a href="#4-自定义动画" class="headerlink" title="4. 自定义动画"></a>4. 自定义动画</h2><ul>
-<li><p><strong>.animate(properties, [duration], [easing], [complete])</strong></p>
-<ul>
-<li>properties<br>一个或多个css属性的键值对所构成的<strong>Object对象</strong>，注意所有用于动画的属性<strong>必须是数字的</strong></li>
-<li>duration<br>动画的执行时间，以毫秒为单位，值越大表示动画执行的越慢</li>
-<li>easing<br>jQuery库默认调用swing，如果需要其他动画，请查找相关插件</li>
-<li>complete<br>动画完成时执行的函数，在当前动画确认完成后触发</li>
-</ul>
-</li>
-<li><p><strong>.animate(properties, options)</strong></p>
-<ul>
-<li>properties 参数同上</li>
-<li>options 参数<ul>
-<li>duration - 设置动画执行的时间</li>
-<li>easing - 规定要使用的 easing 函数，过渡使用哪种缓动函数</li>
-<li>step：规定每个动画的每一步完成之后要执行的函数</li>
-<li>progress：每一次动画调用的时候会执行这个回调，就是一个进度的概念</li>
-<li>complete：动画完成回调</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>.stop()</strong></p>
-<ul>
-<li>.stop()<br>停止第一个动画，继续执行后续动画</li>
-<li>.stop(true)<br>停止所有动画，暂停在当前状态</li>
-<li>.stop(true, true)<br>直接调到当前动画的最终状态，后续的动画全部暂停</li>
-</ul>
-</li>
-</ul>
-<h2 id="5-jQuery核心"><a href="#5-jQuery核心" class="headerlink" title="5. jQuery核心"></a>5. jQuery核心</h2><ul>
-<li><p><strong>.each()</strong><br>由于jQuery的实例是一个元素集合，所以大部分jQuery方法在内部都会调用each</p>
-<ul>
-<li>jQuery.each(array, callback)</li>
-<li>jQuery.each(object, callback)</li>
-</ul>
-<blockquote>
-<p>jQuery.each()函数会根据每次调用函数callback的返回值来决定后续动作，如果返回值为false，则停止循环</p>
-</blockquote>
-</li>
-<li><p><strong>.inArray()</strong><br>查找数组中的索引</p>
-<ul>
-<li><strong>.inArray(value, array, [fromIndex])</strong><br>若存在，返回对应的索引值，所不存在，返回-1</li>
-</ul>
-</li>
-<li><p><strong>.trim()</strong><br>用于去除字符串两端的空白字符</p>
-<ul>
-<li>移除字符串开始和结尾处的所有换行符，空格（包括连续的空格）和制表符（tab）</li>
-<li>如果这些空白字符在字符串中间时，它们将会被保留，不会被移除</li>
-</ul>
-</li>
-<li><p><strong>.get()</strong><br>用于单独操作元素集合中的某一元素</p>
-<ul>
-<li><strong>.get([index])</strong></li>
-</ul>
-</li>
-<li><p><strong>.index()</strong><br>从匹配的元素中搜索给定元素的索引值，从0开始计数</p>
-<ul>
-<li><strong>.index()</strong><br>返回jQuery对象中第一个元素相对于它同辈元素的位置</li>
-<li><strong>.index(selector)</strong><br>返回传入的元素相对于 <strong>原先</strong> 集合的位置</li>
-<li><strong>.index(element)</strong><br>返回原先元素相对于选择器匹配元素的位置。如果找不到匹配的元素，则 .index() 返回 -1</li>
-</ul>
-</li>
-</ul>
+        <h1 id="CSS或JS对DOM的解析以及渲染的影响"><a href="#CSS或JS对DOM的解析以及渲染的影响" class="headerlink" title="CSS或JS对DOM的解析以及渲染的影响"></a>CSS或JS对DOM的解析以及渲染的影响</h1><p>通常网页的 css 样式一般写在 <code>&lt;head&gt;</code> 标签内，而 js 脚本一般放在 <code>&lt;body&gt;</code> 标签的最底部或在外链的脚本上使用 <code>defer</code> 或 <code>async</code> 属性。这些都是为了优化样式或者脚本给 DOM 的解析或渲染所带来的影响。下面就将结合具体的例子做具体的探讨</p>
+<h2 id="CSS样式与DOM解析与渲染的关系"><a href="#CSS样式与DOM解析与渲染的关系" class="headerlink" title="CSS样式与DOM解析与渲染的关系"></a>CSS样式与DOM解析与渲染的关系</h2><p>下面为一个 demo <code>&lt;body&gt;</code> 标签中的代码</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;h2&gt;HEAD1&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">    function print() &#123;</span></span><br><span class="line"><span class="regexp">        console.log('first script', document.querySelectorAll('h2'));</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">    print();</span></span><br><span class="line"><span class="regexp">    setTimeout(print, 0);</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br><span class="line">&lt;link rel=<span class="string">"stylesheet"</span> href=<span class="string">"https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css"</span>&gt;</span><br><span class="line">&lt;h2&gt;HEAD2&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">    console.log('second script');</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+<p>运行代码前需要在 chrome 开发者工具的 <code>Network</code> 一栏中，将<code>Disable cache</code> 与 <code>Throttling</code> 做相应的设置模拟较慢的网速来观察 DOM 的解析与渲染的过程<br><img src="/2018/02/23/CSS或JS对DOM的解析以及渲染的影响/dev-tool-setting.png" alt="dev tool setting"></p>
+<p>代码运行结果如下：<br><img src="/2018/02/23/CSS或JS对DOM的解析以及渲染的影响/sync-css-dom-parse-render.png" alt="sync css and dom parse render"></p>
+<p>首先第一个 <code>&lt;script&gt;</code> 标签里面的代码开始运行，打印出一个 <code>&lt;h2&gt;</code>，在一个 事件循环 后打印出两个 <code>&lt;h2&gt;</code>。而此刻屏幕上的两个 <code>&lt;h2&gt;</code> 标签并没有显示出来，第二个 <code>&lt;script&gt;</code> 标签里面的代码也没运行，可以判断浏览器应该正在加载外链的 css 样式表。所以可以得出样式表会阻塞并延迟整个 DOM 的渲染，包括其后的脚本也被延迟执行了。从控制台打印出两个 <code>&lt;h2&gt;</code> 也可以看出其并不会阻塞 DOM 的解析。这也符合网站性能优化的特点，可以在一定程度上避免 <code>repaint</code> 和 <code>reflow</code>。</p>
+<h2 id="JS脚本与DOM解析与渲染的关系"><a href="#JS脚本与DOM解析与渲染的关系" class="headerlink" title="JS脚本与DOM解析与渲染的关系"></a>JS脚本与DOM解析与渲染的关系</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;h2&gt;HEAD1&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">    function print() &#123;</span></span><br><span class="line"><span class="regexp">        console.log('first script', document.querySelectorAll('h2'));</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">    print();</span></span><br><span class="line"><span class="regexp">    setTimeout(print, 0);</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br><span class="line">&lt;script src=<span class="string">"https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;h2&gt;HEAD2&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">    console.log('second script');</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
+<p>代码运行结果如下：<br><img src="/2018/02/23/CSS或JS对DOM的解析以及渲染的影响/sync-js-dom-parse-render.png" alt="sync js and dom parse render"></p>
+<p>此时浏览器同样在加载外部脚本，控制台里打印出了两次只有一个的 <code>&lt;h2&gt;</code> 标签，并且浏览器中已经显示除了第一个 <code>&lt;h2&gt;</code> 标签里的 HEAD1。可以看出脚本的加载并不影响其前面的 DOM 的解析和渲染，但是会阻塞后续的 DOM 的解析当然也包括渲染</p>
 
       
     </div>
@@ -489,7 +372,17 @@
       
         <div class="post-tags">
           
-            <a href="/tags/jQuery/" rel="tag"># jQuery</a>
+            <a href="/tags/css/" rel="tag"># css</a>
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+            <a href="/tags/html/" rel="tag"># html</a>
+          
+            <a href="/tags/DOM/" rel="tag"># DOM</a>
+          
+            <a href="/tags/DOM渲染/" rel="tag"># DOM渲染</a>
+          
+            <a href="/tags/DOM解析/" rel="tag"># DOM解析</a>
           
         </div>
       
@@ -502,8 +395,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/10/jQuery（三）事件部分/" rel="next" title="jQuery（三）事件部分">
-                <i class="fa fa-chevron-left"></i> jQuery（三）事件部分
+              <a href="/2018/02/21/canvas学习笔记/" rel="next" title="canvas学习笔记">
+                <i class="fa fa-chevron-left"></i> canvas学习笔记
               </a>
             
           </div>
@@ -511,10 +404,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/01/13/CSS预处理器-Sass/" rel="prev" title="CSS预处理器-Sass">
-                CSS预处理器-Sass <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -660,7 +549,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#jQuery-动画部分"><span class="nav-number">1.</span> <span class="nav-text">jQuery 动画部分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-隐藏显示"><span class="nav-number">1.1.</span> <span class="nav-text">1. 隐藏显示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-上卷下拉"><span class="nav-number">1.2.</span> <span class="nav-text">2. 上卷下拉</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-淡入淡出"><span class="nav-number">1.3.</span> <span class="nav-text">3. 淡入淡出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-自定义动画"><span class="nav-number">1.4.</span> <span class="nav-text">4. 自定义动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-jQuery核心"><span class="nav-number">1.5.</span> <span class="nav-text">5. jQuery核心</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS或JS对DOM的解析以及渲染的影响"><span class="nav-number">1.</span> <span class="nav-text">CSS或JS对DOM的解析以及渲染的影响</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS样式与DOM解析与渲染的关系"><span class="nav-number">1.1.</span> <span class="nav-text">CSS样式与DOM解析与渲染的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS脚本与DOM解析与渲染的关系"><span class="nav-number">1.2.</span> <span class="nav-text">JS脚本与DOM解析与渲染的关系</span></a></li></ol></li></ol></div>
             
 
           </div>
