@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="css,javascript,html,DOM,DOM渲染,DOM解析," />
+  <meta name="keywords" content="css,javascript,html,DOM,DOM render,DOM parse," />
 
 
 
@@ -79,21 +79,21 @@
 
 
 
-<meta name="description" content="CSS或JS对DOM的解析以及渲染的影响通常网页的 css 样式一般写在 &amp;lt;head&amp;gt; 标签内，而 js 脚本一般放在 &amp;lt;body&amp;gt; 标签的最底部或在外链的脚本上使用 defer 或 async 属性。这些都是为了优化样式或者脚本给 DOM 的解析或渲染所带来的影响。下面就将结合具体的例子做具体的探讨 CSS样式与DOM解析与渲染的关系下面为一个 demo &amp;lt;body">
-<meta name="keywords" content="css,javascript,html,DOM,DOM渲染,DOM解析">
+<meta name="description" content="CSS样式表和JS脚本对DOM的解析以及渲染的影响通常网页的 css 样式一般写在 &amp;lt;head&amp;gt; 标签内，而 js 脚本一般放在 &amp;lt;body&amp;gt; 标签的最底部或在外链的脚本上使用 defer 或 async 属性。这些都是为了优化样式或者脚本给 DOM 的解析或渲染所带来的影响，也是 HTML5 的最佳实践。下面就将结合具体的例子做具体的探讨">
+<meta name="keywords" content="css,javascript,html,DOM,DOM render,DOM parse">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CSS或JS对DOM的解析以及渲染的影响">
+<meta property="og:title" content="CSS样式表和JS脚本对DOM的解析以及渲染的影响">
 <meta property="og:url" content="http://lugusliu.com/2018/02/23/CSS或JS对DOM的解析以及渲染的影响/index.html">
 <meta property="og:site_name" content="Lugus&#39;s Personal Website">
-<meta property="og:description" content="CSS或JS对DOM的解析以及渲染的影响通常网页的 css 样式一般写在 &amp;lt;head&amp;gt; 标签内，而 js 脚本一般放在 &amp;lt;body&amp;gt; 标签的最底部或在外链的脚本上使用 defer 或 async 属性。这些都是为了优化样式或者脚本给 DOM 的解析或渲染所带来的影响。下面就将结合具体的例子做具体的探讨 CSS样式与DOM解析与渲染的关系下面为一个 demo &amp;lt;body">
+<meta property="og:description" content="CSS样式表和JS脚本对DOM的解析以及渲染的影响通常网页的 css 样式一般写在 &amp;lt;head&amp;gt; 标签内，而 js 脚本一般放在 &amp;lt;body&amp;gt; 标签的最底部或在外链的脚本上使用 defer 或 async 属性。这些都是为了优化样式或者脚本给 DOM 的解析或渲染所带来的影响，也是 HTML5 的最佳实践。下面就将结合具体的例子做具体的探讨">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://lugusliu.com/2018/02/23/CSS或JS对DOM的解析以及渲染的影响/dev-tool-setting.png">
 <meta property="og:image" content="http://lugusliu.com/2018/02/23/CSS或JS对DOM的解析以及渲染的影响/sync-css-dom-parse-render.png">
 <meta property="og:image" content="http://lugusliu.com/2018/02/23/CSS或JS对DOM的解析以及渲染的影响/sync-js-dom-parse-render.png">
-<meta property="og:updated_time" content="2018-02-23T15:10:47.768Z">
+<meta property="og:updated_time" content="2018-02-25T15:52:13.162Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CSS或JS对DOM的解析以及渲染的影响">
-<meta name="twitter:description" content="CSS或JS对DOM的解析以及渲染的影响通常网页的 css 样式一般写在 &amp;lt;head&amp;gt; 标签内，而 js 脚本一般放在 &amp;lt;body&amp;gt; 标签的最底部或在外链的脚本上使用 defer 或 async 属性。这些都是为了优化样式或者脚本给 DOM 的解析或渲染所带来的影响。下面就将结合具体的例子做具体的探讨 CSS样式与DOM解析与渲染的关系下面为一个 demo &amp;lt;body">
+<meta name="twitter:title" content="CSS样式表和JS脚本对DOM的解析以及渲染的影响">
+<meta name="twitter:description" content="CSS样式表和JS脚本对DOM的解析以及渲染的影响通常网页的 css 样式一般写在 &amp;lt;head&amp;gt; 标签内，而 js 脚本一般放在 &amp;lt;body&amp;gt; 标签的最底部或在外链的脚本上使用 defer 或 async 属性。这些都是为了优化样式或者脚本给 DOM 的解析或渲染所带来的影响，也是 HTML5 的最佳实践。下面就将结合具体的例子做具体的探讨">
 <meta name="twitter:image" content="http://lugusliu.com/2018/02/23/CSS或JS对DOM的解析以及渲染的影响/dev-tool-setting.png">
 
 
@@ -130,7 +130,7 @@
 
 
 
-  <title>CSS或JS对DOM的解析以及渲染的影响 | Lugus's Personal Website</title>
+  <title>CSS样式表和JS脚本对DOM的解析以及渲染的影响 | Lugus's Personal Website</title>
   
 
 
@@ -274,7 +274,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">CSS或JS对DOM的解析以及渲染的影响</h1>
+          <h1 class="post-title" itemprop="name headline">CSS样式表和JS脚本对DOM的解析以及渲染的影响</h1>
         
 
         <div class="post-meta">
@@ -346,15 +346,41 @@
       
 
       
-        <h1 id="CSS或JS对DOM的解析以及渲染的影响"><a href="#CSS或JS对DOM的解析以及渲染的影响" class="headerlink" title="CSS或JS对DOM的解析以及渲染的影响"></a>CSS或JS对DOM的解析以及渲染的影响</h1><p>通常网页的 css 样式一般写在 <code>&lt;head&gt;</code> 标签内，而 js 脚本一般放在 <code>&lt;body&gt;</code> 标签的最底部或在外链的脚本上使用 <code>defer</code> 或 <code>async</code> 属性。这些都是为了优化样式或者脚本给 DOM 的解析或渲染所带来的影响。下面就将结合具体的例子做具体的探讨</p>
+        <h1 id="CSS样式表和JS脚本对DOM的解析以及渲染的影响"><a href="#CSS样式表和JS脚本对DOM的解析以及渲染的影响" class="headerlink" title="CSS样式表和JS脚本对DOM的解析以及渲染的影响"></a>CSS样式表和JS脚本对DOM的解析以及渲染的影响</h1><p>通常网页的 css 样式一般写在 <code>&lt;head&gt;</code> 标签内，而 js 脚本一般放在 <code>&lt;body&gt;</code> 标签的最底部或在外链的脚本上使用 <code>defer</code> 或 <code>async</code> 属性。这些都是为了优化样式或者脚本给 DOM 的解析或渲染所带来的影响，也是 HTML5 的最佳实践。下面就将结合具体的例子做具体的探讨</p>
+<a id="more"></a>
+<h2 id="DOM渲染的简易流程"><a href="#DOM渲染的简易流程" class="headerlink" title="DOM渲染的简易流程"></a>DOM渲染的简易流程</h2><p>首先，我们需要先了解下一个包含外部 <code>css</code> 样式和外部 <code>js</code> 脚本的 <code>HTML</code> 网页载入和渲染的简易流程</p>
+<ol>
+<li><p>浏览器主进程开始下载 html 文档的内容并由 GUI 渲染线程开始解析 DOM</p>
+</li>
+<li><p>遇到样式表文件 <code>&lt;link rel=&#39;stylesheet&#39;&gt;</code>，交由浏览器主线程下载，并继续解析 DOM</p>
+</li>
+<li><p>遇到脚本文件 <code>&lt;script&gt;</code>，会暂停 GUI 线程对 DOM 进行解析，开始由浏览器主线程下载脚本文件</p>
+</li>
+<li><p>下载结束后交由 JS 引擎线程执行该脚本文件，且此时的脚本文件可以访问已经解析完的 DOM</p>
+</li>
+<li><p>脚本执行结束后，JS 引擎线程切换为 GUI 线程继续对 DOM 进行解析</p>
+</li>
+<li><p>整个 DOM 解析完成，触发 <code>DOMContentLoaded</code> 事件（在 IE8 中可用 <code>document.readyState === interactive</code> 模拟）</p>
+</li>
+</ol>
+<h2 id="DOMContentLoaded-事件"><a href="#DOMContentLoaded-事件" class="headerlink" title="DOMContentLoaded 事件"></a><code>DOMContentLoaded</code> 事件</h2><p>上述过程也可以说明 <code>DOMContentLoaded</code> 事件触发时，DOM 已经完全加载并解析完毕了，此时的 HTML 文档的样式文件，图片文件，iframe页面的加载可能都未完成，但此时的 JavaScript 已经可以操作 DOM 完成一些功能了。但在绝大多数场景下，样式文件的载入会延迟 <code>DOMContentLoaded</code> 事件的触发，尤其是在 JS 进行一些操作 DOM 元素的位置或大小的场景。所以多数浏览器会在触发 <code>DOMContentLoaded</code> 这个事件时会考虑到外部样式文件的载入，通常如果样式文件位于脚本之前，则浏览器会认为该脚本的执行依赖于样式的载入，延迟该脚本的执行与 <code>DOMContentLoaded</code> 事件的触发。不同的浏览器的行为也是不同的。</p>
+<p>在 HTML5 的标准中，<code>DOMContentLoaded</code> 就是一个纯 DOM 事件与样式表无关，但在脚本执行前，出现在 <code>&lt;script&gt;</code> 标签前的 <code>&lt;link rel=&#39;stylesheet&#39;&gt;</code> 样式文件必须完全载入，脚本执行后后面的 DOM 会继续解析，解析完毕后触发 <code>DOMContentLoaded</code> 事件。</p>
+<p>与 <code>DOMContentLoaded</code> 事件相近的还有 <code>load</code> 事件以及 <code>document.onreadystatechange</code> 事件：</p>
+<ul>
+<li><p><code>load</code> 事件在页面完全载入是触发，此时 DOM 已经完成渲染，所有的样式文件，图片文件，iframe页面都已完成加载与渲染。</p>
+</li>
+<li><p><code>document.onreadystatechange</code> 该事件的触发条件是当 <code>document.readyState</code> 属性发生改变。该属性有三个值分别为 <strong>loading</strong>，此时 DOM 正在加载。<strong>interactive</strong>，DOM 完成加载和解析，但样式，图像，框架之类的资源仍在加载，可用其模拟 <code>DOMContentLoaded</code> 事件与 jquery ready 事件。<strong>complete</strong>，所有资源都已加载完成。DOM 完成渲染，可用其模拟 <code>load</code> 事件</p>
+</li>
+</ul>
 <h2 id="CSS样式与DOM解析与渲染的关系"><a href="#CSS样式与DOM解析与渲染的关系" class="headerlink" title="CSS样式与DOM解析与渲染的关系"></a>CSS样式与DOM解析与渲染的关系</h2><p>下面为一个 demo <code>&lt;body&gt;</code> 标签中的代码</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;h2&gt;HEAD1&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">    function print() &#123;</span></span><br><span class="line"><span class="regexp">        console.log('first script', document.querySelectorAll('h2'));</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">    print();</span></span><br><span class="line"><span class="regexp">    setTimeout(print, 0);</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br><span class="line">&lt;link rel=<span class="string">"stylesheet"</span> href=<span class="string">"https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css"</span>&gt;</span><br><span class="line">&lt;h2&gt;HEAD2&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">    console.log('second script');</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
 <p>运行代码前需要在 chrome 开发者工具的 <code>Network</code> 一栏中，将<code>Disable cache</code> 与 <code>Throttling</code> 做相应的设置模拟较慢的网速来观察 DOM 的解析与渲染的过程<br><img src="/2018/02/23/CSS或JS对DOM的解析以及渲染的影响/dev-tool-setting.png" alt="dev tool setting"></p>
 <p>代码运行结果如下：<br><img src="/2018/02/23/CSS或JS对DOM的解析以及渲染的影响/sync-css-dom-parse-render.png" alt="sync css and dom parse render"></p>
-<p>首先第一个 <code>&lt;script&gt;</code> 标签里面的代码开始运行，打印出一个 <code>&lt;h2&gt;</code>，在一个 事件循环 后打印出两个 <code>&lt;h2&gt;</code>。而此刻屏幕上的两个 <code>&lt;h2&gt;</code> 标签并没有显示出来，第二个 <code>&lt;script&gt;</code> 标签里面的代码也没运行，可以判断浏览器应该正在加载外链的 css 样式表。所以可以得出样式表会阻塞并延迟整个 DOM 的渲染，包括其后的脚本也被延迟执行了。从控制台打印出两个 <code>&lt;h2&gt;</code> 也可以看出其并不会阻塞 DOM 的解析。这也符合网站性能优化的特点，可以在一定程度上避免 <code>repaint</code> 和 <code>reflow</code>。</p>
+<p>首先第一个 <code>&lt;script&gt;</code> 标签里面的代码开始运行，控制台中打印出一个 <code>&lt;h2&gt;</code>，在一个 <a href="http://lugusliu.com/2018/02/02/javascript-Event-Loop/">JS事件循环</a> 后打印出了两个 <code>&lt;h2&gt;</code>，即外部样式表后的 DOM已经完成解析。而此刻浏览器窗口中的两个 <code>&lt;h2&gt;</code> 标签并没有显示出来，第二个 <code>&lt;script&gt;</code> 标签里面的代码也没运行，可以判断浏览器应该正在加载外链的 css 样式表。所以可以样式表会阻塞并延迟整个 DOM 的渲染，包括其后的脚本。但并不会阻塞后续 DOM 的解析。同样内联的样式表同样表现如此。</p>
 <h2 id="JS脚本与DOM解析与渲染的关系"><a href="#JS脚本与DOM解析与渲染的关系" class="headerlink" title="JS脚本与DOM解析与渲染的关系"></a>JS脚本与DOM解析与渲染的关系</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;h2&gt;HEAD1&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">    function print() &#123;</span></span><br><span class="line"><span class="regexp">        console.log('first script', document.querySelectorAll('h2'));</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">    print();</span></span><br><span class="line"><span class="regexp">    setTimeout(print, 0);</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br><span class="line">&lt;script src=<span class="string">"https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;h2&gt;HEAD2&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">    console.log('second script');</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
 <p>代码运行结果如下：<br><img src="/2018/02/23/CSS或JS对DOM的解析以及渲染的影响/sync-js-dom-parse-render.png" alt="sync js and dom parse render"></p>
-<p>此时浏览器同样在加载外部脚本，控制台里打印出了两次只有一个的 <code>&lt;h2&gt;</code> 标签，并且浏览器中已经显示除了第一个 <code>&lt;h2&gt;</code> 标签里的 HEAD1。可以看出脚本的加载并不影响其前面的 DOM 的解析和渲染，但是会阻塞后续的 DOM 的解析当然也包括渲染</p>
+<p>此时浏览器同样在加载外部脚本，控制台里打印出了一个的 <code>&lt;h2&gt;</code> 标签并且在一次事件循环中依旧只打印出了一个 <code>&lt;h2&gt;</code>，此时浏览器页面上已经显示了第一个 <code>&lt;h2&gt;</code> 标签里的 HEAD1。而第二个<code>&lt;h2&gt;</code> 标签里的 HEAD2需要等待外部脚本载入执行完毕后才会在浏览器窗口打印出。即外链的脚本的加载与执行并不影响其前面的 DOM 的解析和渲染，但是会阻塞后续的 DOM 的解析当然也包括渲染。</p>
+<h2 id="动态的插入样式表与脚本对DOM解析与渲染的影响"><a href="#动态的插入样式表与脚本对DOM解析与渲染的影响" class="headerlink" title="动态的插入样式表与脚本对DOM解析与渲染的影响"></a>动态的插入样式表与脚本对DOM解析与渲染的影响</h2><p>由于动态的插入外链的样式表和外链的脚本都涉及到了网络请求，所以都不会阻塞 DOM 的解析与渲染。而动态的插入内联的样式表与脚本并不涉及网络请求都会阻塞后续的 DOM 的解析与渲染。当然了未链接到 DOM 树的动态创建的样式表和脚本不管是外链还是内联的，都不会被下载，解析，或执行。</p>
 
       
     </div>
@@ -380,9 +406,9 @@
           
             <a href="/tags/DOM/" rel="tag"># DOM</a>
           
-            <a href="/tags/DOM渲染/" rel="tag"># DOM渲染</a>
+            <a href="/tags/DOM-render/" rel="tag"># DOM render</a>
           
-            <a href="/tags/DOM解析/" rel="tag"># DOM解析</a>
+            <a href="/tags/DOM-parse/" rel="tag"># DOM parse</a>
           
         </div>
       
@@ -549,7 +575,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS或JS对DOM的解析以及渲染的影响"><span class="nav-number">1.</span> <span class="nav-text">CSS或JS对DOM的解析以及渲染的影响</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS样式与DOM解析与渲染的关系"><span class="nav-number">1.1.</span> <span class="nav-text">CSS样式与DOM解析与渲染的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS脚本与DOM解析与渲染的关系"><span class="nav-number">1.2.</span> <span class="nav-text">JS脚本与DOM解析与渲染的关系</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS样式表和JS脚本对DOM的解析以及渲染的影响"><span class="nav-number">1.</span> <span class="nav-text">CSS样式表和JS脚本对DOM的解析以及渲染的影响</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM渲染的简易流程"><span class="nav-number">1.1.</span> <span class="nav-text">DOM渲染的简易流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOMContentLoaded-事件"><span class="nav-number">1.2.</span> <span class="nav-text">DOMContentLoaded 事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS样式与DOM解析与渲染的关系"><span class="nav-number">1.3.</span> <span class="nav-text">CSS样式与DOM解析与渲染的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS脚本与DOM解析与渲染的关系"><span class="nav-number">1.4.</span> <span class="nav-text">JS脚本与DOM解析与渲染的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动态的插入样式表与脚本对DOM解析与渲染的影响"><span class="nav-number">1.5.</span> <span class="nav-text">动态的插入样式表与脚本对DOM解析与渲染的影响</span></a></li></ol></li></ol></div>
             
 
           </div>

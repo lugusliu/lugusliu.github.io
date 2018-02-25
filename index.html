@@ -268,7 +268,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/23/CSS或JS对DOM的解析以及渲染的影响/" itemprop="url">CSS或JS对DOM的解析以及渲染的影响</a></h1>
+                <a class="post-title-link" href="/2018/02/23/CSS或JS对DOM的解析以及渲染的影响/" itemprop="url">CSS样式表和JS脚本对DOM的解析以及渲染的影响</a></h1>
         
 
         <div class="post-meta">
@@ -341,18 +341,14 @@
 
       
         
-          
-            <h1 id="CSS或JS对DOM的解析以及渲染的影响"><a href="#CSS或JS对DOM的解析以及渲染的影响" class="headerlink" title="CSS或JS对DOM的解析以及渲染的影响"></a>CSS或JS对DOM的解析以及渲染的影响</h1><p>通常网页的 css 样式一般写在 <code>&lt;head&gt;</code> 标签内，而 js 脚本一般放在 <code>&lt;body&gt;</code> 标签的最底部或在外链的脚本上使用 <code>defer</code> 或 <code>async</code> 属性。这些都是为了优化样式或者脚本给 DOM 的解析或渲染所带来的影响。下面就将结合具体的例子做具体的探讨</p>
-<h2 id="CSS样式与DOM解析与渲染的关系"><a href="#CSS样式与DOM解析与渲染的关系" class="headerlink" title="CSS样式与DOM解析与渲染的关系"></a>CSS样式与DOM解析与渲染的关系</h2><p>下面为一个 demo <code>&lt;body&gt;</code> 标签中的代码</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;h2&gt;HEAD1&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">    function print() &#123;</span></span><br><span class="line"><span class="regexp">        console.log('first script', document.querySelectorAll('h2'));</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">    print();</span></span><br><span class="line"><span class="regexp">    setTimeout(print, 0);</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br><span class="line">&lt;link rel=<span class="string">"stylesheet"</span> href=<span class="string">"https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css"</span>&gt;</span><br><span class="line">&lt;h2&gt;HEAD2&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">    console.log('second script');</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
-<p>运行代码前需要在 chrome 开发者工具的 <code>Network</code> 一栏中，将<code>Disable cache</code> 与 <code>Throttling</code> 做相应的设置模拟较慢的网速来观察 DOM 的解析与渲染的过程<br><img src="/2018/02/23/CSS或JS对DOM的解析以及渲染的影响/dev-tool-setting.png" alt="dev tool setting"></p>
-<p>代码运行结果如下：<br><img src="/2018/02/23/CSS或JS对DOM的解析以及渲染的影响/sync-css-dom-parse-render.png" alt="sync css and dom parse render"></p>
-<p>首先第一个 <code>&lt;script&gt;</code> 标签里面的代码开始运行，打印出一个 <code>&lt;h2&gt;</code>，在一个 事件循环 后打印出两个 <code>&lt;h2&gt;</code>。而此刻屏幕上的两个 <code>&lt;h2&gt;</code> 标签并没有显示出来，第二个 <code>&lt;script&gt;</code> 标签里面的代码也没运行，可以判断浏览器应该正在加载外链的 css 样式表。所以可以得出样式表会阻塞并延迟整个 DOM 的渲染，包括其后的脚本也被延迟执行了。从控制台打印出两个 <code>&lt;h2&gt;</code> 也可以看出其并不会阻塞 DOM 的解析。这也符合网站性能优化的特点，可以在一定程度上避免 <code>repaint</code> 和 <code>reflow</code>。</p>
-<h2 id="JS脚本与DOM解析与渲染的关系"><a href="#JS脚本与DOM解析与渲染的关系" class="headerlink" title="JS脚本与DOM解析与渲染的关系"></a>JS脚本与DOM解析与渲染的关系</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;h2&gt;HEAD1&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">    function print() &#123;</span></span><br><span class="line"><span class="regexp">        console.log('first script', document.querySelectorAll('h2'));</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">    print();</span></span><br><span class="line"><span class="regexp">    setTimeout(print, 0);</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br><span class="line">&lt;script src=<span class="string">"https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"</span>&gt;&lt;/script&gt;</span><br><span class="line">&lt;h2&gt;HEAD2&lt;<span class="regexp">/h2&gt;</span></span><br><span class="line"><span class="regexp">&lt;script&gt;</span></span><br><span class="line"><span class="regexp">    console.log('second script');</span></span><br><span class="line"><span class="regexp">&lt;/</span>script&gt;</span><br></pre></td></tr></table></figure>
-<p>代码运行结果如下：<br><img src="/2018/02/23/CSS或JS对DOM的解析以及渲染的影响/sync-js-dom-parse-render.png" alt="sync js and dom parse render"></p>
-<p>此时浏览器同样在加载外部脚本，控制台里打印出了两次只有一个的 <code>&lt;h2&gt;</code> 标签，并且浏览器中已经显示除了第一个 <code>&lt;h2&gt;</code> 标签里的 HEAD1。可以看出脚本的加载并不影响其前面的 DOM 的解析和渲染，但是会阻塞后续的 DOM 的解析当然也包括渲染</p>
-
-          
+          <h1 id="CSS样式表和JS脚本对DOM的解析以及渲染的影响"><a href="#CSS样式表和JS脚本对DOM的解析以及渲染的影响" class="headerlink" title="CSS样式表和JS脚本对DOM的解析以及渲染的影响"></a>CSS样式表和JS脚本对DOM的解析以及渲染的影响</h1><p>通常网页的 css 样式一般写在 <code>&lt;head&gt;</code> 标签内，而 js 脚本一般放在 <code>&lt;body&gt;</code> 标签的最底部或在外链的脚本上使用 <code>defer</code> 或 <code>async</code> 属性。这些都是为了优化样式或者脚本给 DOM 的解析或渲染所带来的影响，也是 HTML5 的最佳实践。下面就将结合具体的例子做具体的探讨</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/02/23/CSS或JS对DOM的解析以及渲染的影响/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
